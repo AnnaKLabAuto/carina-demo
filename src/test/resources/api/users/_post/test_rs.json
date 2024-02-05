@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "data": {
+    "name": "regex:[\\^[a-zA-Z]{8}$]",
+    "salary": "regex:[\\d{4}]",
+    "age": "regex:[\\d{2}]",
+    "id": "regex:\\d+"
+  },
+  "message": "Successfully! Record has been added."
+}
