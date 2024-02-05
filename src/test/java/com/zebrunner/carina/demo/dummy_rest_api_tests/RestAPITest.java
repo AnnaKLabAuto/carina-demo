@@ -36,7 +36,7 @@ public class RestAPITest extends AbstractTest {
         getMethod.validateResponseAgainstSchema("api/users/_get/test_rs.schema");
     }
 
-    @Test(description = "JIRA#DEMO-0003")
+    @Test(description = "JIRA#DEMO-0004")
     @MethodOwner(owner = "anna")
     public void testPutMethod(){
         PutMethod putMethod = new PutMethod(25);
