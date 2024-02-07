@@ -10,8 +10,8 @@ import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
 @Endpoint(url = "${base_url}/api/v1/create", methodType = HttpMethodType.POST)
-@RequestTemplatePath(path = "api/users/_post/test_rq.json")
-@ResponseTemplatePath(path = "api/users/_post/test_rs.json")
+@RequestTemplatePath(path = "api/users/_post/rq.json")
+@ResponseTemplatePath(path = "api/users/_post/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class PostMethod extends AbstractApiMethodV2 {
     public PostMethod() {

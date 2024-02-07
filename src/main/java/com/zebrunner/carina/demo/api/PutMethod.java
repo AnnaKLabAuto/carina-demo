@@ -10,8 +10,8 @@ import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
 @Endpoint(url = "${base_url}/api/v1/update/${id}", methodType = HttpMethodType.PUT)
-@RequestTemplatePath(path = "api/users/_put/test_rq.json")
-@ResponseTemplatePath(path = "api/users/_put/test_rs.json")
+@RequestTemplatePath(path = "api/users/_put/rq.json")
+@ResponseTemplatePath(path = "api/users/_put/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class PutMethod extends AbstractApiMethodV2 {
     public PutMethod(int id) {
