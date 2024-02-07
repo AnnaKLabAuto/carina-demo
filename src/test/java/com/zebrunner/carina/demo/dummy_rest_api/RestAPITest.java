@@ -1,4 +1,4 @@
-package com.zebrunner.carina.demo.dummy_rest_api_tests;
+package com.zebrunner.carina.demo.dummy_rest_api;
 
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;

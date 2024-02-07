@@ -3,7 +3,7 @@
 
     <test name="Rest API test">
         <classes>
-            <class name="com.zebrunner.carina.demo.dummy_rest_api_tests.RestAPITest" />
+            <class name="com.zebrunner.carina.demo.dummy_rest_api.RestAPITest" />
         </classes>
     </test>
 
