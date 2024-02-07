@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Rest API Tests" parallel="methods">
+
+    <test name="Rest API test">
+        <classes>
+            <class name="com.zebrunner.carina.demo.api.RestAPITest" />
+        </classes>
+    </test>
+
+</suite>
