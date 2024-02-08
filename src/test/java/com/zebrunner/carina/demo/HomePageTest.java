@@ -1,9 +1,11 @@
-package com.zebrunner.carina.demo.web;
+package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
-import com.zebrunner.carina.demo.web.HomePage;
-import com.zebrunner.carina.demo.web.components.ProductCard;
-import com.zebrunner.carina.demo.web.components.SearchLineComponent;
+import com.zebrunner.carina.demo.gui.CreateAccountPage;
+import com.zebrunner.carina.demo.gui.HomePage;
+import com.zebrunner.carina.demo.gui.SearchPage;
+import com.zebrunner.carina.demo.gui.components.ProductCard;
+import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -42,6 +44,39 @@ public class HomePageTest extends AbstractTest {
             sa.assertTrue(card.getTitleText().toLowerCase().contains(clothingName.toLowerCase()),
                     String.format("Product with name '%s doesn't contain the product name in it's title", card.getTitleText()));
         }
+
+        sa.assertAll();
+    }
+
+    @Test
+    public void verifyCreateAccountButton(){
+        SoftAssert sa = new SoftAssert();
+        WebDriver driver = getDriver();
+
+        HomePage page = new HomePage(driver);
+        page.open();
+        page.getHeader().clickCreateAccount();
+
+        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/create/";
+        String actualUrl = driver.getCurrentUrl();
+        sa.assertEquals(actualUrl, expectedUrl, "URL after account creation doesn't match");
+
+        sa.assertAll();
+    }
+
+    @Test
+    public void verifySignInAccountButton(){
+        SoftAssert sa = new SoftAssert();
+        WebDriver driver = getDriver();
+
+        HomePage page = new HomePage(driver);
+        page.open();
+        page.getHeader().clickSignIn();
+
+        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/login/referer/" +
+                "aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/";
+        String actualUrl = driver.getCurrentUrl();
+        sa.assertEquals(actualUrl, expectedUrl, "URL after clicking sign in doesn't match");
 
         sa.assertAll();
     }

@@ -1,6 +1,6 @@
-package com.zebrunner.carina.demo.web;
+package com.zebrunner.carina.demo.gui;
 
-import com.zebrunner.carina.demo.web.components.ProductCard;
+import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;

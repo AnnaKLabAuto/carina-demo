@@ -1,4 +1,4 @@
-package com.zebrunner.carina.demo.api;
+package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
@@ -33,7 +33,7 @@ public class RestAPITest extends AbstractTest {
         getMethod.callAPI();
 
         getMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getMethod.validateResponseAgainstSchema("api/users/_get/test_rs.schema");
+        getMethod.validateResponseAgainstSchema("api/users/_get/rs.schema");
     }
 
     @Test(description = "JIRA#DEMO-0003")

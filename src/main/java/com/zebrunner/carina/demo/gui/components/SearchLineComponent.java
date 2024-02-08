@@ -1,6 +1,6 @@
-package com.zebrunner.carina.demo.web.components;
+package com.zebrunner.carina.demo.gui.components;
 
-import com.zebrunner.carina.demo.web.SearchPage;
+import com.zebrunner.carina.demo.gui.SearchPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.Keys;
