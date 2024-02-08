@@ -1,7 +1,6 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
-import com.zebrunner.carina.demo.gui.CreateAccountPage;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SearchPage;
 import com.zebrunner.carina.demo.gui.components.ProductCard;

@@ -5,7 +5,7 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateAccountPage extends AbstractPage {
+public class RegistrationPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='firstname']")
     private ExtendedWebElement firstNameField;
 
@@ -24,31 +24,55 @@ public class CreateAccountPage extends AbstractPage {
     @FindBy(xpath = "//button[@title='Create an Account']")
     private ExtendedWebElement createAccountButton;
 
-    public CreateAccountPage(WebDriver driver) {
+    public RegistrationPage(WebDriver driver) {
         super(driver);
     }
 
+    public ExtendedWebElement getFirstNameField() {
+        return firstNameField;
+    }
+
+    public ExtendedWebElement getLastNameField() {
+        return lastNameField;
+    }
+
+    public ExtendedWebElement getEmailAddressField() {
+        return emailAddressField;
+    }
+
+    public ExtendedWebElement getPasswordField() {
+        return passwordField;
+    }
+
+    public ExtendedWebElement getConfirmPasswordField() {
+        return confirmPasswordField;
+    }
+
+    public ExtendedWebElement getCreateAccountButton() {
+        return createAccountButton;
+    }
+
     public void enterFirstName(String firstName) {
-        firstNameField.sendKeys(firstName);
+        firstNameField.type(firstName);
     }
 
     public void enterLastName(String lastName) {
-        lastNameField.sendKeys(lastName);
+        lastNameField.type(lastName);
     }
 
     public void enterEmailAddress(String emailAddress) {
-        emailAddressField.sendKeys(emailAddress);
+        emailAddressField.type(emailAddress);
     }
 
     public void enterPassword(String password) {
-        passwordField.sendKeys(password);
+        passwordField.type(password);
     }
 
     public void enterConfirmPassword(String confirmPassword) {
-        confirmPasswordField.sendKeys(confirmPassword);
+        confirmPasswordField.type(confirmPassword);
     }
 
-    public void clickCreateAccount() {
+    public void clickCreateAccountButton() {
         createAccountButton.click();
     }
 }
