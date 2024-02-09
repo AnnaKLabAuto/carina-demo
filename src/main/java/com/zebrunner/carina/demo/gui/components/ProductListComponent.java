@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class ProductListComponent extends AbstractUIObject {
+
     @FindBy(xpath = "//li[@class='product-item']")
     private List<ProductCard> cards;
 

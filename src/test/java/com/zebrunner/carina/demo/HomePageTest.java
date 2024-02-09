@@ -3,7 +3,6 @@ package com.zebrunner.carina.demo;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SearchPage;
-import com.zebrunner.carina.demo.gui.components.Footer;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
 import org.openqa.selenium.WebDriver;
@@ -12,8 +11,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.logging.Logger;
 
 public class HomePageTest extends AbstractTest {
 

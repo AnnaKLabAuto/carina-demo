@@ -17,7 +17,6 @@ public class Header extends AbstractUIObject {
     @FindBy(xpath = "//a[contains(@href, '/customer/account/create/')]")
     private ExtendedWebElement createAccountLink;
 
-
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }

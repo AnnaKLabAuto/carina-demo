@@ -1,6 +1,5 @@
 package com.zebrunner.carina.demo;
 
-import com.sun.source.tree.AssertTree;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.ProductPage;
@@ -8,20 +7,15 @@ import com.zebrunner.carina.demo.gui.SearchPage;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.logging.Logger;
 
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertNotNull;
 
 public class ProductPageTest extends AbstractTest {
-
-    Logger logger = Logger.getLogger(ProductPageTest.class.getName());
 
     @Test(description = "JIRA#DEMO-B006")
     public void verifyAddProductToBasket(){
