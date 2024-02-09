@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Web automation - Product Page" parallel="methods">
+
+    <test name="Product Page test">
+        <classes>
+            <class name="com.zebrunner.carina.demo.ProductPageTest" />
+        </classes>
+    </test>
+
+</suite>

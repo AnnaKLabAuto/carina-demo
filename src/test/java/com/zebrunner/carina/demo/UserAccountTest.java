@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class UserAccountTests extends AbstractTest {
+public class UserAccountTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-D001")
     public void verifyCreateAccount(){

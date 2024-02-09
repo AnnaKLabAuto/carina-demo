@@ -25,7 +25,7 @@ public class ProductPageTest extends AbstractTest {
 
     @Test
     public void verifyAddProductToBasket(){
-        String clothingName = "t-shirt";
+        String clothingName = "Radiant Tee";
 
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -44,8 +44,12 @@ public class ProductPageTest extends AbstractTest {
 
         ProductPage productPage = new ProductPage(driver);
         productPage.selectSize("S");
-        productPage.selectColor("white");
+        productPage.selectColor("Orange");
         productPage.clickAddToCart();
+
+        sa.assertTrue(productPage.verifyProductAddedToCart(clothingName), "Product was not added to the cart");
+
+        sa.assertAll();
 
     }
 
@@ -72,6 +76,9 @@ public class ProductPageTest extends AbstractTest {
         productPage.selectSize(" ");
         productPage.selectColor(" ");
         productPage.clickAddToCart();
+
+        sa.assertTrue(productPage.verifyCannotAddToCartWithoutSelection(), "Page shows that this is a required field");
+        sa.assertAll();
 
     }
 }

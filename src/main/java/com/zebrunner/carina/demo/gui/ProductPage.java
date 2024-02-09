@@ -24,6 +24,12 @@ public class ProductPage extends AbstractPage {
     @FindBy(xpath = "//button[@id='product-addtocart-button']")
     private ExtendedWebElement addToCartButton;
 
+    @FindBy(xpath = "//div[@data-bind='html: $parent.prepareMessageForHtml(message.text)']")
+    private ExtendedWebElement successMessageElement;
+
+    @FindBy(id = "super_attribute[143]-error")
+    private ExtendedWebElement errorMessageElement;
+
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -48,5 +54,14 @@ public class ProductPage extends AbstractPage {
 
     public void clickAddToCart() {
         addToCartButton.click();
+    }
+
+    public boolean verifyProductAddedToCart(String productName) {
+        String expectedMessage = "You added " + productName + " to your shopping cart.";
+        return successMessageElement.getText().equals(expectedMessage);
+    }
+
+    public boolean verifyCannotAddToCartWithoutSelection() {
+        return errorMessageElement.isDisplayed();
     }
 }

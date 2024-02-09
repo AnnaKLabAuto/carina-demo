@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="1" name="Web automation - User Account" parallel="methods">
+
+    <test name="User Account test">
+        <classes>
+            <class name="com.zebrunner.carina.demo.UserAccountTest" />
+        </classes>
+    </test>
+
+</suite>
