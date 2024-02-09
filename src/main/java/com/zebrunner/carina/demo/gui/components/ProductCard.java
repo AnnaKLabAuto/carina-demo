@@ -56,15 +56,10 @@ public class ProductCard extends AbstractUIObject {
     }
 
     public String getProductName() {
-        actions.moveToElement(titleElement).perform();
         return titleElement.getText();
     }
 
     public void clickOnProduct() {
-        actions.moveToElement(titleElement).click().perform();
-    }
-
-    public void clickOnReviews() {
-        actions.moveToElement(reviewsLink).click().perform();
+        titleElement.click();
     }
 }

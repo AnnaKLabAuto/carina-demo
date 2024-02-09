@@ -3,6 +3,7 @@ package com.zebrunner.carina.demo;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SearchPage;
+import com.zebrunner.carina.demo.gui.components.Footer;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
 import org.openqa.selenium.WebDriver;
@@ -11,10 +12,14 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 public class HomePageTest extends AbstractTest {
 
-    @Test
+    Logger logger = Logger.getLogger(ProductPageTest.class.getName());
+
+    @Test(description = "JIRA#DEMO-A001")
     public void verifySearchLineTest(){
         String clothingName = "Maya Tunic";
 
@@ -25,16 +30,11 @@ public class HomePageTest extends AbstractTest {
         page.open();
 
         SearchLineComponent searchLineComponent = page.getHeader().getSearchLineComponent();
-
         Assert.assertTrue(searchLineComponent.getSearchInput().isElementPresent(1),
                 "Search input is not present");
 
-        //TODO: check button enabling
-//        Assert.assertTrue(searchLineComponent.getSearchButton().isElementPresent(1),
-//                "Search button is not present");
 
         SearchPage searchPage = searchLineComponent.typeSearchInputData(clothingName);
-
         sa.assertTrue(driver.getCurrentUrl().toLowerCase().contains(clothingName.toLowerCase().replace(" ", "+")),
                 "URL doesn't contain the product");
 
@@ -47,7 +47,7 @@ public class HomePageTest extends AbstractTest {
         sa.assertAll();
     }
 
-    @Test
+    @Test(description = "JIRA#DEMO-B001")
     public void verifyCreateAccountButton(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -63,7 +63,7 @@ public class HomePageTest extends AbstractTest {
         sa.assertAll();
     }
 
-    @Test
+    @Test(description = "JIRA#DEMO-B002")
     public void verifySignInAccountButton(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
