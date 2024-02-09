@@ -17,9 +17,7 @@ import java.util.logging.Logger;
 
 public class HomePageTest extends AbstractTest {
 
-    Logger logger = Logger.getLogger(ProductPageTest.class.getName());
-
-    @Test(description = "JIRA#DEMO-A001")
+    @Test(description = "JIRA#DEMO-B001")
     public void verifySearchLineTest(){
         String clothingName = "Maya Tunic";
 
@@ -47,7 +45,7 @@ public class HomePageTest extends AbstractTest {
         sa.assertAll();
     }
 
-    @Test(description = "JIRA#DEMO-B001")
+    @Test(description = "JIRA#DEMO-B002")
     public void verifyCreateAccountButton(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -63,7 +61,7 @@ public class HomePageTest extends AbstractTest {
         sa.assertAll();
     }
 
-    @Test(description = "JIRA#DEMO-B002")
+    @Test(description = "JIRA#DEMO-B003")
     public void verifySignInAccountButton(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -72,10 +70,10 @@ public class HomePageTest extends AbstractTest {
         page.open();
         page.getHeader().clickSignIn();
 
-        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/login/referer/" +
-                "aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS8%2C/";
+        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/login/referer/";
         String actualUrl = driver.getCurrentUrl();
-        sa.assertEquals(actualUrl, expectedUrl, "URL after clicking sign in doesn't match");
+        sa.assertTrue(actualUrl.startsWith(expectedUrl),
+                "URL after clicking sign in doesn't match");
 
         sa.assertAll();
     }

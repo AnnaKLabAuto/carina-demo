@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 public class RestAPITest extends AbstractTest {
 
-    @Test(description = "JIRA#DEMO-0001")
+    @Test(description = "JIRA#DEMO-A001")
     @MethodOwner(owner = "anna")
     public void testPostMethod(){
         PostMethod postUserMethod = new PostMethod();
@@ -24,7 +24,7 @@ public class RestAPITest extends AbstractTest {
         postUserMethod.validateResponse();
     }
 
-    @Test(description = "JIRA#DEMO-0002")
+    @Test(description = "JIRA#DEMO-A002")
     @MethodOwner(owner = "anna")
     public void testGetMethod(){
         GetMethod getMethod = new GetMethod(1);
@@ -36,7 +36,7 @@ public class RestAPITest extends AbstractTest {
         getMethod.validateResponseAgainstSchema("api/users/_get/rs.schema");
     }
 
-    @Test(description = "JIRA#DEMO-0003")
+    @Test(description = "JIRA#DEMO-A003")
     @MethodOwner(owner = "anna")
     public void testPutMethod(){
         PutMethod putMethod = new PutMethod(25);
@@ -46,7 +46,7 @@ public class RestAPITest extends AbstractTest {
         putMethod.validateResponse();
     }
 
-    @Test(description = "JIRA#DEMO-0004")
+    @Test(description = "JIRA#DEMO-A004")
     @MethodOwner(owner = "anna")
     public void testDeleteMethod(){
         DeleteMethod deleteUserMethod = new DeleteMethod(2);

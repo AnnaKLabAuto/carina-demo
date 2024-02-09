@@ -9,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 
 public class AdvancedSearchPageTest extends AbstractTest {
 
-    @Test
+    @Test(description = "JIRA#DEMO-B004")
     public void verifySearchForm(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -28,12 +28,13 @@ public class AdvancedSearchPageTest extends AbstractTest {
 
         String expectedUrl = "https://magento.softwaretestingboard.com/catalogsearch/advanced/result/";
         String actualUrl = driver.getCurrentUrl();
-        sa.assertTrue(actualUrl.startsWith(expectedUrl), "");
+        sa.assertTrue(actualUrl.startsWith(expectedUrl),
+                "URL doesn't start with the expected URL after performing an advanced search");
 
         sa.assertAll();
     }
 
-    @Test
+    @Test(description = "JIRA#DEMO-B005")
     public void verifySearchFormWithInvalidData(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -52,7 +53,8 @@ public class AdvancedSearchPageTest extends AbstractTest {
 
         String expectedUrl = "https://magento.softwaretestingboard.com/catalogsearch/advanced/";
         String actualUrl = driver.getCurrentUrl();
-        sa.assertEquals(actualUrl, expectedUrl, "");
+        sa.assertEquals(actualUrl, expectedUrl,
+                "URL doesn't match the expected URL after submitting the form with invalid data");
 
         sa.assertAll();
     }

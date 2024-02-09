@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 
 public class UserAccountTest extends AbstractTest {
 
-    @Test(description = "JIRA#DEMO-D001")
+    @Test(description = "JIRA#DEMO-B008")
     public void verifyCreateAccount(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -36,7 +36,7 @@ public class UserAccountTest extends AbstractTest {
         sa.assertAll();
     }
 
-    @Test(description = "JIRA#DEMO-D002")
+    @Test(description = "JIRA#DEMO-B009")
     public void verifyCreateAccountWithInvalidInput() {
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -63,7 +63,7 @@ public class UserAccountTest extends AbstractTest {
     }
 
 
-    @Test(description = "JIRA#DEMO-E001")
+    @Test(description = "JIRA#DEMO-B010")
     public void verifySignIn(){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
@@ -85,7 +85,7 @@ public class UserAccountTest extends AbstractTest {
         sa.assertAll();
     }
 
-    @Test(description = "JIRA#DEMO-E002")
+    @Test(description = "JIRA#DEMO-B011")
     public void verifySignInWithInvalidCredentials() {
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();

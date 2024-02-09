@@ -23,7 +23,7 @@ public class ProductPageTest extends AbstractTest {
 
     Logger logger = Logger.getLogger(ProductPageTest.class.getName());
 
-    @Test
+    @Test(description = "JIRA#DEMO-B006")
     public void verifyAddProductToBasket(){
         String clothingName = "Radiant Tee";
 
@@ -53,8 +53,8 @@ public class ProductPageTest extends AbstractTest {
 
     }
 
-    @Test
-    public void verifyTryToAddProductToBasket(){
+    @Test(description = "JIRA#DEMO-B007")
+    public void verifyAddProductToBasketWithoutOptions(){
         String clothingName = "t-shirt";
 
         SoftAssert sa = new SoftAssert();
@@ -77,7 +77,7 @@ public class ProductPageTest extends AbstractTest {
         productPage.selectColor(" ");
         productPage.clickAddToCart();
 
-        sa.assertTrue(productPage.verifyCannotAddToCartWithoutSelection(), "Page shows that this is a required field");
+        sa.assertTrue(productPage.verifyCannotAddToCartWithoutSelection(), "Page display message that this is a required field");
         sa.assertAll();
 
     }
