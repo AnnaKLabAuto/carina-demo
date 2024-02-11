@@ -15,18 +15,21 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
+import static com.zebrunner.carina.demo.enums.ProductDetail.PRODUCT_NAME1;
+import static com.zebrunner.carina.demo.enums.ProductDetail.PRODUCT_NAME2;
+
 public class HomePageTest extends AbstractTest {
 
     @DataProvider(name = "useSearchTestData")
     public Object[][] searchDataProvider() {
         return new Object[][]{
-                {ProductDetail.PRODUCT_NAME1},
-                {ProductDetail.PRODUCT_NAME2},
+                {PRODUCT_NAME1},
+                {PRODUCT_NAME2},
         };
     }
 
     @Test(dataProvider = "useSearchTestData", description = "JIRA#DEMO-B001")
-    public void verifySearchLineTest(String product){
+    public void verifySearchLineTest(ProductDetail product){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
 
@@ -39,23 +42,24 @@ public class HomePageTest extends AbstractTest {
         Assert.assertTrue(searchLineComponent.getSearchInput().isElementPresent(1),
                 "Search input is not present");
 
-        SearchPage searchPage = searchLineComponent.typeSearchInputData(product);
-        sa.assertTrue(driver.getCurrentUrl().toLowerCase().contains(product.toLowerCase().replace(" ", "+")),
-                "URL doesn't contain the product");
+        SearchPage searchPage = searchLineComponent.typeSearchInputData(String.valueOf(product));
+        sa.assertTrue(driver.getCurrentUrl().toLowerCase().contains(String.valueOf(product).toLowerCase()
+                        .replace(" ", "+")), "URL doesn't contain the product");
 
         List<ProductCard> cards = searchPage.getCards();
         Assert.assertNotNull(cards, "Cards list is null");
         Assert.assertFalse(cards.isEmpty(), "Cards list is empty");
 
         for (ProductCard card: cards){
-            sa.assertTrue(card.getTitleText().toLowerCase().contains(product.toLowerCase()),
-                    String.format("Product with name '%s doesn't contain the product name in it's title", card.getTitleText()));
+            sa.assertTrue(card.getTitleText().toLowerCase().contains(String.valueOf(product).toLowerCase()),
+                    String.format("Product with name '%s doesn't contain the product name in it's title",
+                            card.getTitleText()));
         }
 
         sa.assertAll();
     }
 
-    @Test(description = "JIRA#DEMO-B002")
+    @Test(description = "JIRA#DEMO-A002")
     public void verifyCreateAccountButton(){
         WebDriver driver = getDriver();
 
@@ -70,7 +74,7 @@ public class HomePageTest extends AbstractTest {
         Assert.assertTrue(actualUrl.startsWith(expectedUrl), "URL after account creation doesn't match");
     }
 
-    @Test(description = "JIRA#DEMO-B003")
+    @Test(description = "JIRA#DEMO-A003")
     public void verifySignInAccountButton(){
         WebDriver driver = getDriver();
 
@@ -82,7 +86,6 @@ public class HomePageTest extends AbstractTest {
 
         String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/login/referer/";
         String actualUrl = driver.getCurrentUrl();
-        Assert.assertTrue(actualUrl.startsWith(expectedUrl),
-                "URL after clicking sign in doesn't match");
+        Assert.assertTrue(actualUrl.startsWith(expectedUrl), "URL after clicking sign in doesn't match");
     }
 }

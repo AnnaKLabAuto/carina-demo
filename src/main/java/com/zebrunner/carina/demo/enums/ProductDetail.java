@@ -2,18 +2,21 @@ package com.zebrunner.carina.demo.enums;
 
 public enum ProductDetail {
     PRODUCT_NAME1("Tank"),
-    PRODUCT_NAME2("Tee"),
+    PRODUCT_NAME2("Juno Jacket"),
     SIZE("S"),
+    COLOR("Green"),
+    QUANTITY("1"),
+    PRICE_FROM("2"),
+    PRICE_TO("12"),
+    INVALID(" ");
 
-    COLOR("Orange");
+    private final String value;
 
-    private final String productDetail;
-
-    ProductDetail(String productDetail) {
-        this.productDetail = productDetail;
+    ProductDetail(String value) {
+        this.value = value;
     }
 
-    public String getStatus() {
-        return productDetail;
+    public String toString() {
+        return value;
     }
 }

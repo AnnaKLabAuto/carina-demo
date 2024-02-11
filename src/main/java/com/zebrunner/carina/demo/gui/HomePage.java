@@ -8,7 +8,7 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends AbstractPage {
+public class HomePage extends AbstractPage{
 
     @FindBy(xpath = ".//header")
     private Header header;

@@ -4,13 +4,14 @@ public enum Status {
     SUCCESS("success"),
     FAIL("fail");
 
-    private final String status;
+    private final String value;
 
-    Status(String status) {
-        this.status = status;
+    Status(String value) {
+        this.value = value;
     }
 
-    public String getStatus() {
-        return status;
+    @Override
+    public String toString() {
+        return this.value;
     }
 }

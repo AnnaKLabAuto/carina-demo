@@ -15,30 +15,32 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertNotNull;
+import static com.zebrunner.carina.demo.enums.ProductDetail.*;
+import static com.zebrunner.carina.demo.enums.Status.FAIL;
+import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
+
 
 public class ProductPageTest extends AbstractTest {
 
     @DataProvider(name = "useTestDataClothingOptions")
     public Object[][] userSignInDataProvider() {
         return new Object[][]{
-                {ProductDetail.PRODUCT_NAME2, ProductDetail.SIZE, ProductDetail.COLOR, Status.SUCCESS},
-                {ProductDetail.PRODUCT_NAME2, "", ProductDetail.COLOR, Status.FAIL},
-                {ProductDetail.PRODUCT_NAME2, ProductDetail.SIZE, "", Status.FAIL},
-                {ProductDetail.PRODUCT_NAME2,"", "", Status.FAIL}
+                {PRODUCT_NAME2, SIZE, COLOR, SUCCESS},
+                {PRODUCT_NAME2, INVALID, COLOR, FAIL},
+                {PRODUCT_NAME2, SIZE, INVALID, FAIL},
+                {PRODUCT_NAME2, INVALID, INVALID, FAIL}
         };
     }
 
-    @Test(dataProvider = "useTestDataClothingOptions", description = "JIRA#DEMO-B006")
-    public void verifyAddProductToBasket(String product, String size, String color, String message){
+    @Test(dataProvider = "useTestDataClothingOptions", description = "JIRA#DEMO-C001")
+    public void verifyAddProductToBasket(ProductDetail productName, ProductDetail size, ProductDetail color, Status message){
         WebDriver driver = getDriver();
 
         HomePage page = new HomePage(driver);
         page.open();
 
         SearchLineComponent searchLineComponent = page.getHeader().getSearchLineComponent();
-        SearchPage searchPage = searchLineComponent.typeSearchInputData(product);
+        SearchPage searchPage = searchLineComponent.typeSearchInputData(String.valueOf(productName));
         List<ProductCard> cards = searchPage.getCards();
 
         Assert.assertNotNull(cards, "Cards list is null");
@@ -47,14 +49,14 @@ public class ProductPageTest extends AbstractTest {
         cards.get(0).clickOnProduct();
 
         ProductPage productPage = new ProductPage(driver);
-        productPage.selectSize(size);
-        productPage.selectColor(color);
+        productPage.selectSize(String.valueOf(size));
+        productPage.selectColor(String.valueOf(color));
         productPage.clickAddToCart();
 
-        if(!"fail".equals(message)){
-            Assert.assertTrue(productPage.verifyProductAddedToCart(product), "Product was not added to the cart");
+        if(message.equals(SUCCESS)){
+            Assert.assertTrue(productPage.verifyProductAddedToCart(String.valueOf(productName)), "Product was not added to the cart");
         } else {
-            Assert.assertTrue(productPage.isPageOpened(), "Error");
+            Assert.assertTrue(productPage.isErrorMessageDisplayed(), "Error message was not displayed");
         }
     }
 }

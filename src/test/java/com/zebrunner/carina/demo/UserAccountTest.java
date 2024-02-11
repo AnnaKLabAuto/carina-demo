@@ -1,7 +1,6 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.enums.Credentials;
 import com.zebrunner.carina.demo.enums.Status;
 import com.zebrunner.carina.demo.gui.RegistrationPage;
 import com.zebrunner.carina.demo.gui.HomePage;
@@ -12,6 +11,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.UUID;
+
+import static com.zebrunner.carina.demo.enums.Credentials.*;
+import static com.zebrunner.carina.demo.enums.Status.FAIL;
+import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
 public class UserAccountTest implements IAbstractTest {
 
@@ -26,15 +29,15 @@ public class UserAccountTest implements IAbstractTest {
     @DataProvider(name = "useTestDataSignIn")
     public Object[][] userSignInDataProvider() {
         return new Object[][]{
-                {Credentials.EMAIL, Credentials.PASSWORD, Status.SUCCESS},
-                {generateRandomEmail(), Credentials.PASSWORD, Status.FAIL},
-                {Credentials.EMAIL,  generateRandomName(), Status.FAIL},
-                {"", "", Status.FAIL}
+                {"thomas.smith@email.com", "password123!@#", SUCCESS},
+                {generateRandomEmail(), "password123!@#", FAIL},
+                {"thomas.smith@email.com", generateRandomName(), FAIL},
+                {"", "", FAIL}
         };
     }
 
-    @Test(dataProvider = "useTestDataSignIn", description = "JIRA#DEMO-B010")
-    public void verifySignIn(String email, String password, String message){
+    @Test(dataProvider = "useTestDataSignIn", description = "JIRA#DEMO-D001")
+    public void verifySignIn(String email, String password, Status message){
         WebDriver driver = getDriver();
         HomePage page = new HomePage(driver);
         page.open();
@@ -47,27 +50,26 @@ public class UserAccountTest implements IAbstractTest {
 
         signInPage.clickSignInButton();
 
-        if(!"fail".equals(message)){
-            Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage("Thomas Smith"), "Logged as username failed");
+        if(message.equals(SUCCESS)){
+            Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage(String.valueOf(NAME)), "Logged as username failed");
         } else {
-            Assert.assertTrue(signInPage.isErrorMessageDisplayed(), "Error message is not displayed");
+            Assert.assertTrue(signInPage.isErrorMessageDisplayed(), "Error message is not displayed after failed login");
         }
     }
 
     @DataProvider(name = "useTestDataRegister")
     public Object[][] userRegisterDataProvider() {
         return new Object[][]{
-                {generateRandomName(), generateRandomName(), generateRandomEmail(), Credentials.PASSWORD, Status.SUCCESS},
-                {"", generateRandomName(), generateRandomEmail(), Credentials.PASSWORD, Status.FAIL},
-                {generateRandomName(), "", generateRandomEmail(), Credentials.PASSWORD, Status.FAIL},
-                {generateRandomName(), generateRandomName(), "", Credentials.PASSWORD, Status.FAIL},
-                {generateRandomName(), generateRandomName(), generateRandomEmail(), "", Status.FAIL},
-                {"", "", "", "", Status.FAIL}
+                {generateRandomName(), generateRandomName(), generateRandomEmail(), "password123!@#", SUCCESS},
+                {"", generateRandomName(), generateRandomEmail(), "password123!@#", FAIL},
+                {generateRandomName(), "", generateRandomEmail(), "password123!@#", FAIL},
+                {generateRandomName(), generateRandomName(), "", "password123!@#", FAIL},
+                {generateRandomName(), generateRandomName(), generateRandomEmail(), " ", FAIL},
         };
     }
 
-    @Test(dataProvider = "useTestDataRegister", description = "JIRA#DEMO-B008")
-    public void verifyCreateAccount(String firstName, String lastName, String email, String password, String message){
+    @Test(dataProvider = "useTestDataRegister", description = "JIRA#DEMO-D002")
+    public void verifyCreateAccount(String firstName, String lastName, String email, String password, Status message){
         WebDriver driver = getDriver();
         HomePage page = new HomePage(driver);
         page.open();
@@ -84,7 +86,7 @@ public class UserAccountTest implements IAbstractTest {
 
         registrationPage.clickCreateAccountButton();
 
-        if(!"fail".equals(message)){
+        if(message.equals(Status.SUCCESS)){
             String expectedUsername = firstName + " " + lastName;
             Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage(expectedUsername), "Logged as username failed");
         } else {

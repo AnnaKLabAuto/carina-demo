@@ -18,17 +18,17 @@ public class ProductPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='swatch-attribute color']//div[@class='swatch-option color']")
     private List<ExtendedWebElement> colorOptions;
 
-    @FindBy(xpath = "//input[@id='qty']")
-    private ExtendedWebElement quantityInput;
-
     @FindBy(xpath = "//button[@id='product-addtocart-button']")
     private ExtendedWebElement addToCartButton;
 
     @FindBy(xpath = "//div[@data-bind='html: $parent.prepareMessageForHtml(message.text)']")
     private ExtendedWebElement successMessageElement;
 
-    @FindBy(id = "super_attribute[143]-error")
-    private ExtendedWebElement errorMessageElement;
+    @FindBy(xpath = "//*[@id='super_attribute[143]-error']")
+    private ExtendedWebElement errorMessageElementSize;
+
+    @FindBy(xpath = "//*[@id='super_attribute[93]-error']")
+    private ExtendedWebElement errorMessageElementColor;
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -56,12 +56,13 @@ public class ProductPage extends AbstractPage {
         addToCartButton.click();
     }
 
-    public boolean verifyProductAddedToCart(String productName) {
-        String expectedMessage = "You added " + productName + " to your shopping cart.";
+    public boolean verifyProductAddedToCart(String product) {
+        String expectedMessage = "You added " + product + " to your shopping cart.";
         return successMessageElement.getText().equals(expectedMessage);
     }
 
-    public boolean verifyCannotAddToCartWithoutSelection() {
-        return errorMessageElement.isDisplayed();
+    public boolean isErrorMessageDisplayed() {
+        return (errorMessageElementSize.isDisplayed() && errorMessageElementSize.getText().equals("This is a required field."))
+                || (errorMessageElementColor.isDisplayed() && errorMessageElementColor.getText().equals("This is a required field."));
     }
 }
