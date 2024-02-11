@@ -86,7 +86,7 @@ public class UserAccountTest implements IAbstractTest {
 
         registrationPage.clickCreateAccountButton();
 
-        if(message.equals(Status.SUCCESS)){
+        if(message.equals(SUCCESS)){
             String expectedUsername = firstName + " " + lastName;
             Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage(expectedUsername), "Logged as username failed");
         } else {

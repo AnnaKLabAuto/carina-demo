@@ -52,7 +52,7 @@ public class AdvancedSearchPageTest extends AbstractTest {
                 "URL doesn't contain the product");
         List<ProductCard> cards = searchPage.getCards();
 
-        if(message.equals(Status.SUCCESS)){
+        if(message.equals(SUCCESS)){
             for (ProductCard card: cards){
                 Assert.assertTrue(card.getTitleText().toLowerCase().contains(String.valueOf(productName).toLowerCase()),
                         String.format("Product with name '%s doesn't contain the product name in it's title", card.getTitleText()));
