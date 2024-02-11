@@ -77,7 +77,7 @@ public class UserAccountTest implements IAbstractTest {
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         RegistrationPage registrationPage = page.getHeader().clickCreateAccountLink();
-        registrationPage.putDataToSearchForm(firstName, lastName, email, password, password);
+        registrationPage.putDataToForm(firstName, lastName, email, password, password);
         registrationPage.clickCreateAccountButton();
 
         if(message.equals(SUCCESS)){

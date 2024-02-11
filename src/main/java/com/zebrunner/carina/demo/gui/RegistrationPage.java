@@ -33,7 +33,7 @@ public class RegistrationPage extends AbstractPage {
         super(driver);
     }
 
-    public void putDataToSearchForm(String firstName, String lastName, String email, String password, String confirmPassword){
+    public void putDataToForm(String firstName, String lastName, String email, String password, String confirmPassword){
         firstNameField.type(firstName);
         lastNameField.type(lastName);
         emailAddressField.type(email);
