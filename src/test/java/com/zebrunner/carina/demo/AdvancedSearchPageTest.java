@@ -1,7 +1,9 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
-import com.zebrunner.carina.demo.gui.AdvancedSearchPage;
+import com.zebrunner.carina.demo.enums.ProductDetail;
+import com.zebrunner.carina.demo.enums.Status;
+import com.zebrunner.carina.demo.gui.AdvancedSearchFormPage;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SearchPage;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
@@ -18,13 +20,15 @@ public class AdvancedSearchPageTest extends AbstractTest {
     @DataProvider(name = "useAdvancedSearchTestData")
     public Object[][] searchAdvancedDataProvider() {
         return new Object[][]{
-                {"Tank", "1", "Description", "Short Description", "12", "18"},
+                {ProductDetail.PRODUCT_NAME1, "1", " ", " ", "12", "18", Status.SUCCESS},
+                {ProductDetail.PRODUCT_NAME1, "1", " ", " ", "18", "2", Status.FAIL},
+                {" ", " ", " ", " ", " ", " ", Status.FAIL},
         };
     }
 
     @Test(dataProvider = "useAdvancedSearchTestData", description = "JIRA#DEMO-B004")
-    public void verifySearchForm(String productName, String sku, String description, String shortDescription, String priceFrom, String priceTo){
-        SoftAssert sa = new SoftAssert();
+    public void verifySearchForm(String productName, String sku, String description, String shortDescription,
+                                 String priceFrom, String priceTo, String message){
         WebDriver driver = getDriver();
 
         HomePage page = new HomePage(driver);
@@ -32,20 +36,27 @@ public class AdvancedSearchPageTest extends AbstractTest {
 
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
+        AdvancedSearchFormPage advancedSearchForm =  page.getFooter().clickAdvancedSearchLink();
+        advancedSearchForm.enterProductName(productName);
+        advancedSearchForm.enterSKU(sku);
+        advancedSearchForm.enterDescription(description);
+        advancedSearchForm.enterShortDescription(shortDescription);
+        advancedSearchForm.enterPriceFrom(priceFrom);
+        advancedSearchForm.enterPriceTo(priceTo);
 
-        AdvancedSearchPage advancedSearchPage =  page.getFooter().clickAdvancedSearchLink();
-        advancedSearchPage.enterProductName(productName);
-        advancedSearchPage.enterPriceFrom(priceFrom);
-        advancedSearchPage.enterPriceTo(priceTo);
+        SearchPage searchPage =  advancedSearchForm.clickSearchButton();
+        Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains(productName.toLowerCase().replace(" ", "+")),
+                "URL doesn't contain the product");
+        List<ProductCard> cards = searchPage.getCards();
 
-        advancedSearchPage.clickSearchButton();
-
-        String expectedUrl = "https://magento.softwaretestingboard.com/catalogsearch/advanced/result/";
-        String actualUrl = driver.getCurrentUrl();
-        sa.assertTrue(actualUrl.startsWith(expectedUrl),
-                "URL doesn't start with the expected URL after performing an advanced search");
-
-        sa.assertAll();
+        if(!"fail".equals(message)){
+            for (ProductCard card: cards){
+                Assert.assertTrue(card.getTitleText().toLowerCase().contains(productName.toLowerCase()),
+                        String.format("Product with name '%s doesn't contain the product name in it's title", card.getTitleText()));
+            }
+        } else {
+            Assert.assertTrue(advancedSearchForm.isPageOpened(), "?");
+        }
     }
 
 }

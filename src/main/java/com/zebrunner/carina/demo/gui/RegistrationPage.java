@@ -1,11 +1,15 @@
 package com.zebrunner.carina.demo.gui;
 
+import com.zebrunner.carina.demo.gui.components.Header;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class RegistrationPage extends AbstractPage {
+
+    @FindBy(xpath = ".//header")
+    private Header header;
 
     @FindBy(xpath = "//input[@id='firstname']")
     private ExtendedWebElement firstNameField;

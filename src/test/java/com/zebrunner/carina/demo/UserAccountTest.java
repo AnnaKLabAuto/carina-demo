@@ -1,6 +1,8 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.demo.enums.Credentials;
+import com.zebrunner.carina.demo.enums.Status;
 import com.zebrunner.carina.demo.gui.RegistrationPage;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SignInPage;
@@ -13,18 +15,21 @@ import java.util.UUID;
 
 public class UserAccountTest implements IAbstractTest {
 
-//    @BeforeTest
-//    @Override
-//    public WebDriver getDriver(){
-//        return getDriver();
-//    }
+    private String generateRandomName() {
+        return UUID.randomUUID().toString().substring(0, 9);
+    }
+
+    private String generateRandomEmail() {
+        return UUID.randomUUID().toString().substring(0, 9) + "@email.com";
+    }
 
     @DataProvider(name = "useTestDataSignIn")
     public Object[][] userSignInDataProvider() {
         return new Object[][]{
-                {"thomas.smith@email.com", "password123!@#", "success"},
-                {"thomas@email.com", "password123!@#", "fail"},
-                {"thomas.smith@email.com",  "password", "fail"}
+                {Credentials.EMAIL, Credentials.PASSWORD, Status.SUCCESS},
+                {generateRandomEmail(), Credentials.PASSWORD, Status.FAIL},
+                {Credentials.EMAIL,  generateRandomName(), Status.FAIL},
+                {"", "", Status.FAIL}
         };
     }
 
@@ -47,27 +52,18 @@ public class UserAccountTest implements IAbstractTest {
         } else {
             Assert.assertTrue(signInPage.isErrorMessageDisplayed(), "Error message is not displayed");
         }
-//        page.getHeader().clickUserAccount();
-//        page.getHeader().clickSignOut();
     }
 
     @DataProvider(name = "useTestDataRegister")
     public Object[][] userRegisterDataProvider() {
         return new Object[][]{
-                {generateRandomName(), generateRandomName(), generateRandomEmail(), "password123!@#", "success"},
-                {" ", generateRandomName(), generateRandomEmail(), "password123!@#", "fail"},
-                {generateRandomName(), " ", generateRandomEmail(), "password123!@#", "fail"},
-                {generateRandomName(), generateRandomName(), " ", "password123!@#", "fail"},
-                {generateRandomName(), generateRandomName(), generateRandomEmail(), " ", "fail"}
+                {generateRandomName(), generateRandomName(), generateRandomEmail(), Credentials.PASSWORD, Status.SUCCESS},
+                {"", generateRandomName(), generateRandomEmail(), Credentials.PASSWORD, Status.FAIL},
+                {generateRandomName(), "", generateRandomEmail(), Credentials.PASSWORD, Status.FAIL},
+                {generateRandomName(), generateRandomName(), "", Credentials.PASSWORD, Status.FAIL},
+                {generateRandomName(), generateRandomName(), generateRandomEmail(), "", Status.FAIL},
+                {"", "", "", "", Status.FAIL}
         };
-    }
-
-    private String generateRandomName() {
-        return UUID.randomUUID().toString().substring(0, 5);
-    }
-
-    private String generateRandomEmail() {
-        return UUID.randomUUID().toString().substring(0, 5) + "@email.com";
     }
 
     @Test(dataProvider = "useTestDataRegister", description = "JIRA#DEMO-B008")
@@ -92,8 +88,7 @@ public class UserAccountTest implements IAbstractTest {
             String expectedUsername = firstName + " " + lastName;
             Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage(expectedUsername), "Logged as username failed");
         } else {
-            Assert.assertEquals(driver.getCurrentUrl(), "https://magento.softwaretestingboard.com/customer/account/create/",
-                    "User is not on the registration page after putting invalid data to form");
+            Assert.assertTrue(registrationPage.isPageOpened(), "User is not on the registration page after putting invalid data to form");
         }
     }
 

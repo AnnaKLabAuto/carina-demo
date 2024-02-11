@@ -5,7 +5,7 @@ import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class AdvancedSearchPage extends AbstractPage {
+public class AdvancedSearchFormPage extends AbstractPage {
 
     @FindBy(xpath = "//form[@class='form search advanced']//input[@name='name']")
     private ExtendedWebElement productNameInput;
@@ -28,7 +28,7 @@ public class AdvancedSearchPage extends AbstractPage {
     @FindBy(xpath = "//form[@class='form search advanced']//button[@type='submit']")
     private ExtendedWebElement searchButton;
 
-    public AdvancedSearchPage(WebDriver driver) {
+    public AdvancedSearchFormPage(WebDriver driver) {
         super(driver);
     }
 
@@ -56,8 +56,9 @@ public class AdvancedSearchPage extends AbstractPage {
         priceToInput.type(priceTo);
     }
 
-    public void clickSearchButton() {
+    public SearchPage clickSearchButton() {
         searchButton.click();
+        return new SearchPage(getDriver());
     }
 
 

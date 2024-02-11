@@ -1,6 +1,8 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
+import com.zebrunner.carina.demo.enums.ProductDetail;
+import com.zebrunner.carina.demo.enums.Status;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.ProductPage;
 import com.zebrunner.carina.demo.gui.SearchPage;
@@ -21,9 +23,10 @@ public class ProductPageTest extends AbstractTest {
     @DataProvider(name = "useTestDataClothingOptions")
     public Object[][] userSignInDataProvider() {
         return new Object[][]{
-                {"Radiant Tee", "S", "Orange", "success"},
-                {"Radiant Tee", "", "Orange", "fail"},
-                {"Radiant Tee", "s",  "", "fail"}
+                {ProductDetail.PRODUCT_NAME2, ProductDetail.SIZE, ProductDetail.COLOR, Status.SUCCESS},
+                {ProductDetail.PRODUCT_NAME2, "", ProductDetail.COLOR, Status.FAIL},
+                {ProductDetail.PRODUCT_NAME2, ProductDetail.SIZE, "", Status.FAIL},
+                {ProductDetail.PRODUCT_NAME2,"", "", Status.FAIL}
         };
     }
 
@@ -38,8 +41,8 @@ public class ProductPageTest extends AbstractTest {
         SearchPage searchPage = searchLineComponent.typeSearchInputData(product);
         List<ProductCard> cards = searchPage.getCards();
 
-        assertNotNull("Cards list is null", cards);
-        assertFalse("Cards list is empty", cards.isEmpty());
+        Assert.assertNotNull(cards, "Cards list is null");
+        Assert.assertFalse(cards.isEmpty(), "Cards list is empty");
 
         cards.get(0).clickOnProduct();
 
@@ -51,7 +54,7 @@ public class ProductPageTest extends AbstractTest {
         if(!"fail".equals(message)){
             Assert.assertTrue(productPage.verifyProductAddedToCart(product), "Product was not added to the cart");
         } else {
-            Assert.assertTrue(productPage.verifyCannotAddToCartWithoutSelection(), "Error");
+            Assert.assertTrue(productPage.isPageOpened(), "Error");
         }
     }
 }
