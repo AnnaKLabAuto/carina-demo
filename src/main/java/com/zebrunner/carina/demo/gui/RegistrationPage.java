@@ -33,47 +33,11 @@ public class RegistrationPage extends AbstractPage {
         super(driver);
     }
 
-    public ExtendedWebElement getFirstNameField() {
-        return firstNameField;
-    }
-
-    public ExtendedWebElement getLastNameField() {
-        return lastNameField;
-    }
-
-    public ExtendedWebElement getEmailAddressField() {
-        return emailAddressField;
-    }
-
-    public ExtendedWebElement getPasswordField() {
-        return passwordField;
-    }
-
-    public ExtendedWebElement getConfirmPasswordField() {
-        return confirmPasswordField;
-    }
-
-    public ExtendedWebElement getCreateAccountButton() {
-        return createAccountButton;
-    }
-
-    public void enterFirstName(String firstName) {
+    public void putDataToSearchForm(String firstName, String lastName, String email, String password, String confirmPassword){
         firstNameField.type(firstName);
-    }
-
-    public void enterLastName(String lastName) {
         lastNameField.type(lastName);
-    }
-
-    public void enterEmailAddress(String emailAddress) {
-        emailAddressField.type(emailAddress);
-    }
-
-    public void enterPassword(String password) {
+        emailAddressField.type(email);
         passwordField.type(password);
-    }
-
-    public void enterConfirmPassword(String confirmPassword) {
         confirmPasswordField.type(confirmPassword);
     }
 
