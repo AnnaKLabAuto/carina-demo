@@ -1,109 +1,100 @@
 package com.zebrunner.carina.demo;
 
-import com.zebrunner.carina.core.AbstractTest;
+import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.demo.gui.RegistrationPage;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SignInPage;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-public class UserAccountTest extends AbstractTest {
+import java.util.UUID;
 
-    @Test(description = "JIRA#DEMO-B008")
-    public void verifyCreateAccount(){
-        SoftAssert sa = new SoftAssert();
-        WebDriver driver = getDriver();
+public class UserAccountTest implements IAbstractTest {
 
-        HomePage page = new HomePage(driver);
-        page.open();
-        page.getHeader().clickCreateAccount();
+//    @BeforeTest
+//    @Override
+//    public WebDriver getDriver(){
+//        return getDriver();
+//    }
 
-        RegistrationPage createAccountPage = new RegistrationPage(driver);
-
-        createAccountPage.enterFirstName("Thomas");
-        createAccountPage.enterLastName("Smith");
-        createAccountPage.enterEmailAddress("thomas.smith@email.com");
-        createAccountPage.enterPassword("password123!@#");
-        createAccountPage.enterConfirmPassword("password123!@#");
-
-        createAccountPage.clickCreateAccountButton();
-
-        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/";
-        String actualUrl = driver.getCurrentUrl();
-        sa.assertEquals(actualUrl, expectedUrl, "URL after account creation doesn't match");
-
-        sa.assertAll();
+    @DataProvider(name = "useTestDataSignIn")
+    public Object[][] userSignInDataProvider() {
+        return new Object[][]{
+                {"thomas.smith@email.com", "password123!@#", "success"},
+                {"thomas@email.com", "password123!@#", "fail"},
+                {"thomas.smith@email.com",  "password", "fail"}
+        };
     }
 
-    @Test(description = "JIRA#DEMO-B009")
-    public void verifyCreateAccountWithInvalidInput() {
-        SoftAssert sa = new SoftAssert();
+    @Test(dataProvider = "useTestDataSignIn", description = "JIRA#DEMO-B010")
+    public void verifySignIn(String email, String password, String message){
         WebDriver driver = getDriver();
-
         HomePage page = new HomePage(driver);
         page.open();
-        page.getHeader().clickCreateAccount();
 
-        RegistrationPage createAccountPage = new RegistrationPage(driver);
+        Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
-        createAccountPage.enterFirstName("#$%");
-        createAccountPage.enterLastName("@#");
-        createAccountPage.enterEmailAddress("invalid email");
-        createAccountPage.enterPassword("");
-        createAccountPage.enterConfirmPassword("8ui90");
-
-        createAccountPage.clickCreateAccountButton();
-
-        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/create/";
-        String actualUrl = driver.getCurrentUrl();
-        sa.assertEquals(actualUrl, expectedUrl, "URL after failed account creation doesn't match");
-
-        sa.assertAll();
-    }
-
-
-    @Test(description = "JIRA#DEMO-B010")
-    public void verifySignIn(){
-        SoftAssert sa = new SoftAssert();
-        WebDriver driver = getDriver();
-
-        HomePage page = new HomePage(driver);
-        page.open();
-        page.getHeader().clickSignIn();
-
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.enterEmailAddress("tom.smith@email.com");
-        signInPage.enterPassword("password123!@#");
+        SignInPage signInPage = page.getHeader().clickSignInLink();
+        signInPage.enterEmailAddress(email);
+        signInPage.enterPassword(password);
 
         signInPage.clickSignInButton();
 
-        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/";
-        String actualUrl = driver.getCurrentUrl();
-        sa.assertEquals(actualUrl, expectedUrl, "URL after account creation doesn't match");
-
-        sa.assertAll();
+        if(!"fail".equals(message)){
+            Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage("Thomas Smith"), "Logged as username failed");
+        } else {
+            Assert.assertTrue(signInPage.isErrorMessageDisplayed(), "Error message is not displayed");
+        }
+//        page.getHeader().clickUserAccount();
+//        page.getHeader().clickSignOut();
     }
 
-    @Test(description = "JIRA#DEMO-B011")
-    public void verifySignInWithInvalidCredentials() {
-        SoftAssert sa = new SoftAssert();
-        WebDriver driver = getDriver();
+    @DataProvider(name = "useTestDataRegister")
+    public Object[][] userRegisterDataProvider() {
+        return new Object[][]{
+                {generateRandomName(), generateRandomName(), generateRandomEmail(), "password123!@#", "success"},
+                {" ", generateRandomName(), generateRandomEmail(), "password123!@#", "fail"},
+                {generateRandomName(), " ", generateRandomEmail(), "password123!@#", "fail"},
+                {generateRandomName(), generateRandomName(), " ", "password123!@#", "fail"},
+                {generateRandomName(), generateRandomName(), generateRandomEmail(), " ", "fail"}
+        };
+    }
 
+    private String generateRandomName() {
+        return UUID.randomUUID().toString().substring(0, 5);
+    }
+
+    private String generateRandomEmail() {
+        return UUID.randomUUID().toString().substring(0, 5) + "@email.com";
+    }
+
+    @Test(dataProvider = "useTestDataRegister", description = "JIRA#DEMO-B008")
+    public void verifyCreateAccount(String firstName, String lastName, String email, String password, String message){
+        WebDriver driver = getDriver();
         HomePage page = new HomePage(driver);
         page.open();
-        page.getHeader().clickSignIn();
 
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.enterEmailAddress("%^ffemail@email.com");
-        signInPage.enterPassword("56g#$");
+        Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
-        signInPage.clickSignInButton();
+        RegistrationPage registrationPage = page.getHeader().clickCreateAccountLink();
 
-        String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/login/";
-        String actualUrl = driver.getCurrentUrl();
-        sa.assertTrue(actualUrl.startsWith(expectedUrl), "URL after failed sign-in doesn't start with the expected URL");
+        registrationPage.enterFirstName(firstName);
+        registrationPage.enterLastName(lastName);
+        registrationPage.enterEmailAddress(email);
+        registrationPage.enterPassword(password);
+        registrationPage.enterConfirmPassword(password);
 
-        sa.assertAll();
+        registrationPage.clickCreateAccountButton();
+
+        if(!"fail".equals(message)){
+            String expectedUsername = firstName + " " + lastName;
+            Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage(expectedUsername), "Logged as username failed");
+        } else {
+            Assert.assertEquals(driver.getCurrentUrl(), "https://magento.softwaretestingboard.com/customer/account/create/",
+                    "User is not on the registration page after putting invalid data to form");
+        }
     }
+
 }

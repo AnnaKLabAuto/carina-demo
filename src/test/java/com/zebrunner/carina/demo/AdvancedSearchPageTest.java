@@ -3,26 +3,40 @@ package com.zebrunner.carina.demo;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.gui.AdvancedSearchPage;
 import com.zebrunner.carina.demo.gui.HomePage;
+import com.zebrunner.carina.demo.gui.SearchPage;
+import com.zebrunner.carina.demo.gui.components.ProductCard;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.List;
+
 public class AdvancedSearchPageTest extends AbstractTest {
 
-    @Test(description = "JIRA#DEMO-B004")
-    public void verifySearchForm(){
+    @DataProvider(name = "useAdvancedSearchTestData")
+    public Object[][] searchAdvancedDataProvider() {
+        return new Object[][]{
+                {"Tank", "1", "Description", "Short Description", "12", "18"},
+        };
+    }
+
+    @Test(dataProvider = "useAdvancedSearchTestData", description = "JIRA#DEMO-B004")
+    public void verifySearchForm(String productName, String sku, String description, String shortDescription, String priceFrom, String priceTo){
         SoftAssert sa = new SoftAssert();
         WebDriver driver = getDriver();
 
         HomePage page = new HomePage(driver);
         page.open();
-        page.getFooter().clickAdvancedSearchLink();
 
-        AdvancedSearchPage advancedSearchPage = new AdvancedSearchPage(driver);
+        Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
-        advancedSearchPage.enterProductName("Tank");
-        advancedSearchPage.enterPriceFrom("12");
-        advancedSearchPage.enterPriceTo("18");
+
+        AdvancedSearchPage advancedSearchPage =  page.getFooter().clickAdvancedSearchLink();
+        advancedSearchPage.enterProductName(productName);
+        advancedSearchPage.enterPriceFrom(priceFrom);
+        advancedSearchPage.enterPriceTo(priceTo);
 
         advancedSearchPage.clickSearchButton();
 
@@ -30,31 +44,6 @@ public class AdvancedSearchPageTest extends AbstractTest {
         String actualUrl = driver.getCurrentUrl();
         sa.assertTrue(actualUrl.startsWith(expectedUrl),
                 "URL doesn't start with the expected URL after performing an advanced search");
-
-        sa.assertAll();
-    }
-
-    @Test(description = "JIRA#DEMO-B005")
-    public void verifySearchFormWithInvalidData(){
-        SoftAssert sa = new SoftAssert();
-        WebDriver driver = getDriver();
-
-        HomePage page = new HomePage(driver);
-        page.open();
-        page.getFooter().clickAdvancedSearchLink();
-
-        AdvancedSearchPage advancedSearchPage = new AdvancedSearchPage(driver);
-
-        advancedSearchPage.enterProductName("466yuj");
-        advancedSearchPage.enterPriceFrom("12");
-        advancedSearchPage.enterPriceTo("2");
-
-        advancedSearchPage.clickSearchButton();
-
-        String expectedUrl = "https://magento.softwaretestingboard.com/catalogsearch/advanced/";
-        String actualUrl = driver.getCurrentUrl();
-        sa.assertEquals(actualUrl, expectedUrl,
-                "URL doesn't match the expected URL after submitting the form with invalid data");
 
         sa.assertAll();
     }

@@ -1,5 +1,7 @@
 package com.zebrunner.carina.demo.gui.components;
 
+import com.zebrunner.carina.demo.gui.AdvancedSearchPage;
+import com.zebrunner.carina.demo.gui.SearchPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
@@ -44,7 +46,8 @@ public class Footer extends AbstractUIObject {
         return advancedSearchLink;
     }
 
-    public void clickAdvancedSearchLink(){
+    public AdvancedSearchPage clickAdvancedSearchLink(){
         advancedSearchLink.click();
+        return new AdvancedSearchPage(getDriver());
     }
 }

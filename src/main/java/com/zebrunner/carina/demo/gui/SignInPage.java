@@ -16,6 +16,10 @@ public class SignInPage extends AbstractPage {
     @FindBy(xpath = "//button[@id='send2']")
     private ExtendedWebElement signInButton;
 
+    @FindBy(xpath = "//div[@class='messages']//div[@class='message-error error message']//div")
+    private ExtendedWebElement errorMessage;
+
+
     public SignInPage(WebDriver driver) {
         super(driver);
     }
@@ -38,5 +42,9 @@ public class SignInPage extends AbstractPage {
 
     public void clickSignInButton() {
         signInButton.click();
+    }
+
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isElementPresent();
     }
 }

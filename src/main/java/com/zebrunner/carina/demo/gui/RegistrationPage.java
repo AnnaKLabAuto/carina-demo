@@ -76,4 +76,6 @@ public class RegistrationPage extends AbstractPage {
     public void clickCreateAccountButton() {
         createAccountButton.click();
     }
+
+
 }
