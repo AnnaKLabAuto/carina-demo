@@ -40,12 +40,8 @@ public class AdvancedSearchPageTest extends AbstractTest {
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         AdvancedSearchFormPage advancedSearchForm =  page.getFooter().clickAdvancedSearchLink();
-        advancedSearchForm.enterProductName(String.valueOf(productName));
-        advancedSearchForm.enterSKU(String.valueOf(sku));
-        advancedSearchForm.enterDescription(String.valueOf(description));
-        advancedSearchForm.enterShortDescription(String.valueOf(shortDescription));
-        advancedSearchForm.enterPriceFrom(String.valueOf(priceFrom));
-        advancedSearchForm.enterPriceTo(String.valueOf(priceTo));
+        advancedSearchForm.putDataToSearchForm(String.valueOf(productName), String.valueOf(sku),
+                String.valueOf(description), String.valueOf(shortDescription), String.valueOf(priceFrom), String.valueOf(priceTo));
 
         SearchPage searchPage =  advancedSearchForm.clickSearchButton();
         Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains(String.valueOf(productName).toLowerCase().replace(" ", "+")),

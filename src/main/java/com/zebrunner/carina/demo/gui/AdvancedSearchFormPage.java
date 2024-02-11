@@ -32,27 +32,12 @@ public class AdvancedSearchFormPage extends AbstractPage {
         super(driver);
     }
 
-    public void enterProductName(String productName) {
+    public void putDataToSearchForm(String productName, String sku, String description, String shortDescription, String priceFrom, String priceTo){
         productNameInput.type(productName);
-    }
-
-    public void enterSKU(String sku) {
         skuInput.type(sku);
-    }
-
-    public void enterDescription(String description) {
         descriptionInput.type(description);
-    }
-
-    public void enterShortDescription(String shortDescription) {
         shortDescriptionInput.type(shortDescription);
-    }
-
-    public void enterPriceFrom(String priceFrom) {
         priceFromInput.type(priceFrom);
-    }
-
-    public void enterPriceTo(String priceTo) {
         priceToInput.type(priceTo);
     }
 
