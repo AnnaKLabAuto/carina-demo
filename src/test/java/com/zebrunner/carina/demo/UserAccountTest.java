@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 
 import java.util.UUID;
 
-import static com.zebrunner.carina.demo.enums.Credentials.*;
 import static com.zebrunner.carina.demo.enums.Status.FAIL;
 import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
@@ -51,7 +50,7 @@ public class UserAccountTest implements IAbstractTest {
         signInPage.clickSignInButton();
 
         if(message.equals(SUCCESS)){
-            Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage(String.valueOf(NAME)), "Logged as username failed");
+            Assert.assertTrue(page.getHeader().isUsernameInWelcomeMessage("Thomas Smith"), "Logged as username failed");
         } else {
             Assert.assertTrue(signInPage.isErrorMessageDisplayed(), "Error message is not displayed after failed login");
         }
