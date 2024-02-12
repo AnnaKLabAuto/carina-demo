@@ -54,7 +54,7 @@ public class AdvancedSearchPageTest extends AbstractTest {
                         String.format("Product with name '%s doesn't contain the product name in it's title", card.getTitleText()));
             }
         } else {
-            Assert.assertTrue(advancedSearchForm.isPageOpened(), "Test failed because user stayed on the advanced search page");
+            Assert.assertTrue(advancedSearchForm.isPageOpened(), "Test failed because the user didn't stay on the advanced search page");
         }
     }
 
