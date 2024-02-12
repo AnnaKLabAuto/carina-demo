@@ -40,7 +40,7 @@ public class HomePageTest extends AbstractTest {
         };
     }
 
-    @Test(dataProvider = "useSearchTestData", description = "JIRA#DEMO-B001")
+    @Test(dataProvider = "useSearchTestData", description = "JIRA#DEMO-A001")
     public void verifySearchLineTest(ProductDetail product){
         SoftAssert sa = new SoftAssert();
 

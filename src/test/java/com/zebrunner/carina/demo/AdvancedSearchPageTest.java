@@ -42,7 +42,7 @@ public class AdvancedSearchPageTest extends AbstractTest {
         };
     }
 
-    @Test(dataProvider = "useAdvancedSearchTestData", description = "JIRA#DEMO-B002")
+    @Test(dataProvider = "useAdvancedSearchTestData", description = "JIRA#DEMO-B001")
     public void verifySearchForm(ProductDetail productName, ProductDetail sku, ProductDetail description, ProductDetail shortDescription,
                                  ProductDetail priceFrom, ProductDetail priceTo, Status message){
 
