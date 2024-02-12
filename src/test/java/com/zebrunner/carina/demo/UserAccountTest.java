@@ -7,6 +7,7 @@ import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SignInPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -16,6 +17,17 @@ import static com.zebrunner.carina.demo.enums.Status.FAIL;
 import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
 public class UserAccountTest implements IAbstractTest {
+
+    private HomePage page;
+
+    private WebDriver driver;
+
+    @BeforeMethod
+    public void getHomePage() {
+        driver = getDriver();
+        page = new HomePage(driver);
+        page.open();
+    }
 
     private String generateRandomName() {
         return UUID.randomUUID().toString().substring(0, 9);
@@ -37,10 +49,6 @@ public class UserAccountTest implements IAbstractTest {
 
     @Test(dataProvider = "useTestDataSignIn", description = "JIRA#DEMO-D001")
     public void verifySignIn(String email, String password, Status message){
-        WebDriver driver = getDriver();
-        HomePage page = new HomePage(driver);
-        page.open();
-
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         SignInPage signInPage = page.getHeader().clickSignInLink();
@@ -69,10 +77,6 @@ public class UserAccountTest implements IAbstractTest {
 
     @Test(dataProvider = "useTestDataRegister", description = "JIRA#DEMO-D002")
     public void verifyCreateAccount(String firstName, String lastName, String email, String password, Status message){
-        WebDriver driver = getDriver();
-        HomePage page = new HomePage(driver);
-        page.open();
-
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         RegistrationPage registrationPage = page.getHeader().clickCreateAccountLink();

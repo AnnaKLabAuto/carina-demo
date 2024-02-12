@@ -10,6 +10,7 @@ import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,6 +23,16 @@ import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
 public class ProductPageTest extends AbstractTest {
 
+    private HomePage page;
+
+    private WebDriver driver;
+
+    @BeforeMethod
+    public void getHomePage() {
+        driver = getDriver();
+        page = new HomePage(driver);
+        page.open();
+    }
     @DataProvider(name = "useTestDataClothingOptions")
     public Object[][] userSignInDataProvider() {
         return new Object[][]{
@@ -34,11 +45,6 @@ public class ProductPageTest extends AbstractTest {
 
     @Test(dataProvider = "useTestDataClothingOptions", description = "JIRA#DEMO-C001")
     public void verifyAddProductToBasket(ProductDetail productName, ProductDetail size, ProductDetail color, Status message){
-        WebDriver driver = getDriver();
-
-        HomePage page = new HomePage(driver);
-        page.open();
-
         SearchLineComponent searchLineComponent = page.getHeader().getSearchLineComponent();
         SearchPage searchPage = searchLineComponent.typeSearchInputData(String.valueOf(productName));
         List<ProductCard> cards = searchPage.getCards();

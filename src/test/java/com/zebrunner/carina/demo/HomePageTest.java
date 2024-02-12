@@ -8,6 +8,7 @@ import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,6 +21,17 @@ import static com.zebrunner.carina.demo.enums.ProductDetail.PRODUCT_NAME2;
 
 public class HomePageTest extends AbstractTest {
 
+    private HomePage page;
+
+    private WebDriver driver;
+
+    @BeforeMethod
+    public void getHomePage() {
+        driver = getDriver();
+        page = new HomePage(driver);
+        page.open();
+    }
+
     @DataProvider(name = "useSearchTestData")
     public Object[][] searchDataProvider() {
         return new Object[][]{
@@ -31,10 +43,6 @@ public class HomePageTest extends AbstractTest {
     @Test(dataProvider = "useSearchTestData", description = "JIRA#DEMO-B001")
     public void verifySearchLineTest(ProductDetail product){
         SoftAssert sa = new SoftAssert();
-        WebDriver driver = getDriver();
-
-        HomePage page = new HomePage(driver);
-        page.open();
 
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
@@ -61,11 +69,6 @@ public class HomePageTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-A002")
     public void verifyCreateAccountButton(){
-        WebDriver driver = getDriver();
-
-        HomePage page = new HomePage(driver);
-        page.open();
-
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
         page.getHeader().clickCreateAccountLink();
 
@@ -76,11 +79,6 @@ public class HomePageTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-A003")
     public void verifySignInAccountButton(){
-        WebDriver driver = getDriver();
-
-        HomePage page = new HomePage(driver);
-        page.open();
-
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
         page.getHeader().clickSignInLink();
 

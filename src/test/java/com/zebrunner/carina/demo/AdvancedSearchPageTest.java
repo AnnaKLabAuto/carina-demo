@@ -7,8 +7,10 @@ import com.zebrunner.carina.demo.gui.AdvancedSearchFormPage;
 import com.zebrunner.carina.demo.gui.HomePage;
 import com.zebrunner.carina.demo.gui.SearchPage;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -19,6 +21,17 @@ import static com.zebrunner.carina.demo.enums.Status.FAIL;
 import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
 public class AdvancedSearchPageTest extends AbstractTest {
+
+    private HomePage page;
+
+    private WebDriver driver;
+
+    @BeforeMethod
+    public void getHomePage() {
+        driver = getDriver();
+        page = new HomePage(driver);
+        page.open();
+    }
 
     @DataProvider(name = "useAdvancedSearchTestData")
     public Object[][] searchAdvancedDataProvider() {
@@ -32,10 +45,6 @@ public class AdvancedSearchPageTest extends AbstractTest {
     @Test(dataProvider = "useAdvancedSearchTestData", description = "JIRA#DEMO-B002")
     public void verifySearchForm(ProductDetail productName, ProductDetail sku, ProductDetail description, ProductDetail shortDescription,
                                  ProductDetail priceFrom, ProductDetail priceTo, Status message){
-        WebDriver driver = getDriver();
-
-        HomePage page = new HomePage(driver);
-        page.open();
 
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
