@@ -23,12 +23,6 @@ public class Header extends AbstractUIObject {
     @FindBy(xpath = "//li[@class='greet welcome']//span[@class='logged-in']")
     private ExtendedWebElement welcomeMessage;
 
-    @FindBy(xpath = "//button[contains(@class, 'customer-name') and contains(text(), 'Change')]")
-    private ExtendedWebElement changeButton;
-
-    @FindBy(xpath = "//li[@class='authorization-link']//a[contains(text(), 'Sign Out')]")
-    private ExtendedWebElement signOutLink;
-
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
@@ -50,13 +44,5 @@ public class Header extends AbstractUIObject {
     public boolean isUsernameInWelcomeMessage(String username) {
         String welcomeMessageText = welcomeMessage.getText();
         return welcomeMessageText.contains(username);
-    }
-
-    public void clickUserAccount(){
-        changeButton.click();
-    }
-
-    public void clickSignOut(){
-        signOutLink.click();
     }
 }
