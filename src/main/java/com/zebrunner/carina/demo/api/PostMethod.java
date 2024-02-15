@@ -15,6 +15,9 @@ import com.zebrunner.carina.utils.config.Configuration;
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class PostMethod extends AbstractApiMethodV2 {
     public PostMethod() {
+        super("api/users/_post/rq.json", "api/users/_post/rs.json", "api/users/user.properties");
         replaceUrlPlaceholder("base_url", Configuration.getRequired("base"));
     }
 }
+
+

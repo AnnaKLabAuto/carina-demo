@@ -14,7 +14,6 @@ public class RestAPITest extends AbstractTest {
     public void testPostMethod(){
         PostMethod postUserMethod = new PostMethod();
 
-        postUserMethod.setProperties("api/users/user.properties");
         postUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         postUserMethod.callAPI();
         postUserMethod.validateResponse();
@@ -27,7 +26,6 @@ public class RestAPITest extends AbstractTest {
 
         getMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         getMethod.callAPI();
-
         getMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getMethod.validateResponseAgainstSchema("api/users/_get/rs.schema");
     }
