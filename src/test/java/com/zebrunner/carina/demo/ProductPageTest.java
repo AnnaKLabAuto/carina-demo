@@ -25,14 +25,12 @@ public class ProductPageTest extends AbstractTest {
 
     private HomePage page;
 
-    private WebDriver driver;
-
     @BeforeMethod
     public void getHomePage() {
-        driver = getDriver();
-        page = new HomePage(driver);
+        page = new HomePage(getDriver());
         page.open();
     }
+
     @DataProvider(name = "useTestDataClothingOptions")
     public Object[][] userSignInDataProvider() {
         return new Object[][]{
@@ -54,7 +52,7 @@ public class ProductPageTest extends AbstractTest {
 
         cards.get(0).clickOnProduct();
 
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(getDriver());
         productPage.selectSize(String.valueOf(size));
         productPage.selectColor(String.valueOf(color));
         productPage.clickAddToCart();

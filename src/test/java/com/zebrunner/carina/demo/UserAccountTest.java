@@ -20,12 +20,9 @@ public class UserAccountTest implements IAbstractTest {
 
     private HomePage page;
 
-    private WebDriver driver;
-
     @BeforeMethod
     public void getHomePage() {
-        driver = getDriver();
-        page = new HomePage(driver);
+        page = new HomePage(getDriver());
         page.open();
     }
 

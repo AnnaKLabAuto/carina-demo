@@ -24,12 +24,9 @@ public class AdvancedSearchPageTest extends AbstractTest {
 
     private HomePage page;
 
-    private WebDriver driver;
-
     @BeforeMethod
     public void getHomePage() {
-        driver = getDriver();
-        page = new HomePage(driver);
+        page = new HomePage(getDriver());
         page.open();
     }
 
@@ -53,7 +50,7 @@ public class AdvancedSearchPageTest extends AbstractTest {
                 String.valueOf(description), String.valueOf(shortDescription), String.valueOf(priceFrom), String.valueOf(priceTo));
 
         SearchPage searchPage =  advancedSearchForm.clickSearchButton();
-        Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains(String.valueOf(productName).toLowerCase().replace(" ", "+")),
+        Assert.assertTrue(page.getCurrentUrl().toLowerCase().contains(String.valueOf(productName).toLowerCase().replace(" ", "+")),
                 "URL doesn't contain the product");
         List<ProductCard> cards = searchPage.getCards();
 

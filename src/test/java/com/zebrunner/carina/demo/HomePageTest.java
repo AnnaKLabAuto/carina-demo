@@ -23,12 +23,9 @@ public class HomePageTest extends AbstractTest {
 
     private HomePage page;
 
-    private WebDriver driver;
-
     @BeforeMethod
     public void getHomePage() {
-        driver = getDriver();
-        page = new HomePage(driver);
+        page = new HomePage(getDriver());
         page.open();
     }
 
@@ -51,7 +48,7 @@ public class HomePageTest extends AbstractTest {
                 "Search input is not present");
 
         SearchPage searchPage = searchLineComponent.typeSearchInputData(String.valueOf(product));
-        sa.assertTrue(driver.getCurrentUrl().toLowerCase().contains(String.valueOf(product).toLowerCase()
+        sa.assertTrue(page.getCurrentUrl().toLowerCase().contains(String.valueOf(product).toLowerCase()
                         .replace(" ", "+")), "URL doesn't contain the product");
 
         List<ProductCard> cards = searchPage.getCards();
@@ -73,7 +70,7 @@ public class HomePageTest extends AbstractTest {
         page.getHeader().clickCreateAccountLink();
 
         String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/create/";
-        String actualUrl = driver.getCurrentUrl();
+        String actualUrl = page.getCurrentUrl();
         Assert.assertTrue(actualUrl.startsWith(expectedUrl), "URL after account creation doesn't match");
     }
 
@@ -83,7 +80,7 @@ public class HomePageTest extends AbstractTest {
         page.getHeader().clickSignInLink();
 
         String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/login/referer/";
-        String actualUrl = driver.getCurrentUrl();
+        String actualUrl = page.getCurrentUrl();
         Assert.assertTrue(actualUrl.startsWith(expectedUrl), "URL after clicking sign in doesn't match");
     }
 }
