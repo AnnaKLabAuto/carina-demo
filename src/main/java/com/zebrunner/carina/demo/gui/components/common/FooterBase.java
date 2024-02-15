@@ -1,4 +1,4 @@
-package com.zebrunner.carina.demo.gui.components.footer;
+package com.zebrunner.carina.demo.gui.components.common;
 
 import com.zebrunner.carina.demo.gui.pages.desktop.AdvancedSearchFormPage;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;

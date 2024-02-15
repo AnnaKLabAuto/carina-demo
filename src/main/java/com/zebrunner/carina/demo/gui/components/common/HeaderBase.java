@@ -1,4 +1,4 @@
-package com.zebrunner.carina.demo.gui.components.header;
+package com.zebrunner.carina.demo.gui.components.common;
 
 import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;

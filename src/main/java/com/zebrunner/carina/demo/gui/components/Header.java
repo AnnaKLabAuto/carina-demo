@@ -1,6 +1,7 @@
-package com.zebrunner.carina.demo.gui.components.header;
+package com.zebrunner.carina.demo.gui.components;
 
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
+import com.zebrunner.carina.demo.gui.components.common.HeaderBase;
 import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;

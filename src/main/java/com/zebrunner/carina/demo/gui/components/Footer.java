@@ -1,5 +1,6 @@
-package com.zebrunner.carina.demo.gui.components.footer;
+package com.zebrunner.carina.demo.gui.components;
 
+import com.zebrunner.carina.demo.gui.components.common.FooterBase;
 import com.zebrunner.carina.demo.gui.pages.desktop.AdvancedSearchFormPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.openqa.selenium.WebDriver;
