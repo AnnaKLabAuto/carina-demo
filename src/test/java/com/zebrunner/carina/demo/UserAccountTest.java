@@ -2,6 +2,8 @@ package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.demo.enums.Status;
+import com.zebrunner.carina.demo.gui.pages.common.RegistrationPageBase;
+import com.zebrunner.carina.demo.gui.pages.common.SignInPageBase;
 import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;
@@ -39,7 +41,7 @@ public class UserAccountTest implements IAbstractTest {
         HomePageBase page = new HomePage(getDriver());
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
-        SignInPage signInPage = page.getHeader().clickSignInLink();
+        SignInPageBase signInPage = page.getHeader().clickSignInLink();
         signInPage.enterEmailAddress(email);
         signInPage.enterPassword(password);
 
@@ -68,7 +70,7 @@ public class UserAccountTest implements IAbstractTest {
         HomePageBase page = new HomePage(getDriver());
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
-        RegistrationPage registrationPage = page.getHeader().clickCreateAccountLink();
+        RegistrationPageBase registrationPage = page.getHeader().clickCreateAccountLink();
         registrationPage.putDataToForm(firstName, lastName, email, password, password);
         registrationPage.clickCreateAccountButton();
 

@@ -9,4 +9,12 @@ public abstract class SignInPageBase extends AbstractPage {
         super(driver);
     }
 
+    public abstract void enterEmailAddress(String emailAddress);
+
+    public abstract void enterPassword(String password);
+
+    public abstract void clickSignInButton();
+
+    public abstract boolean isErrorMessageDisplayed();
+
 }

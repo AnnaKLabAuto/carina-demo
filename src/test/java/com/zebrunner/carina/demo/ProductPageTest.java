@@ -3,6 +3,7 @@ package com.zebrunner.carina.demo;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.enums.ProductDetail;
 import com.zebrunner.carina.demo.enums.Status;
+import com.zebrunner.carina.demo.gui.pages.common.ProductPageBase;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.demo.gui.pages.desktop.ProductPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SearchPage;
@@ -44,7 +45,7 @@ public class ProductPageTest extends AbstractTest {
 
         cards.get(0).clickOnProduct();
 
-        ProductPage productPage = new ProductPage(getDriver());
+        ProductPageBase productPage = new ProductPage(getDriver());
         productPage.selectSize(String.valueOf(size));
         productPage.selectColor(String.valueOf(color));
         productPage.clickAddToCart();

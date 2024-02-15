@@ -3,6 +3,7 @@ package com.zebrunner.carina.demo;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.enums.ProductDetail;
 import com.zebrunner.carina.demo.enums.Status;
+import com.zebrunner.carina.demo.gui.pages.common.SearchPageBase;
 import com.zebrunner.carina.demo.gui.pages.desktop.AdvancedSearchFormPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SearchPage;
@@ -40,7 +41,7 @@ public class AdvancedSearchPageTest extends AbstractTest {
         advancedSearchForm.putDataToSearchForm(String.valueOf(productName), String.valueOf(sku),
                 String.valueOf(description), String.valueOf(shortDescription), String.valueOf(priceFrom), String.valueOf(priceTo));
 
-        SearchPage searchPage =  advancedSearchForm.clickSearchButton();
+        SearchPageBase searchPage =  advancedSearchForm.clickSearchButton();
         Assert.assertTrue(page.getCurrentUrl().toLowerCase().contains(String.valueOf(productName).toLowerCase().replace(" ", "+")),
                 "URL doesn't contain the product");
         List<ProductCard> cards = searchPage.getCards();

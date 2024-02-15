@@ -13,4 +13,6 @@ public abstract class SearchPageBase extends AbstractPage {
         super(driver);
     }
 
+    public abstract List<ProductCard> getCards();
+
 }

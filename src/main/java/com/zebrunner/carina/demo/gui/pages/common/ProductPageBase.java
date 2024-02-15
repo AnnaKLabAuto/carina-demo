@@ -12,4 +12,14 @@ public abstract class ProductPageBase extends AbstractPage {
     public ProductPageBase(WebDriver driver) {
         super(driver);
     }
+
+    public abstract void selectSize(String size);
+
+    public abstract void selectColor(String color);
+
+    public abstract void clickAddToCart();
+
+    public abstract boolean verifyProductAddedToCart(String product);
+
+    public abstract boolean isErrorMessageDisplayed();
 }
