@@ -10,10 +10,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends AbstractPage{
 
-    @FindBy(xpath = ".//header")
+    @FindBy(xpath = "//header")
     private Header header;
 
-    @FindBy(xpath = ".//footer")
+    @FindBy(xpath = "//footer")
     private Footer footer;
 
     public HomePage(WebDriver driver) {

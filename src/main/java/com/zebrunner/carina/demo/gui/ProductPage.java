@@ -9,9 +9,6 @@ import java.util.List;
 
 public class ProductPage extends AbstractPage {
 
-    @FindBy(xpath = "//form[@id='product_addtocart_form']")
-    private ExtendedWebElement addToCartForm;
-
     @FindBy(xpath = "//div[@class='swatch-attribute size']//div[@class='swatch-option text']")
     private List<ExtendedWebElement> sizeOptions;
 
@@ -24,10 +21,10 @@ public class ProductPage extends AbstractPage {
     @FindBy(xpath = "//div[@data-bind='html: $parent.prepareMessageForHtml(message.text)']")
     private ExtendedWebElement successMessageElement;
 
-    @FindBy(xpath = "//*[@id='super_attribute[143]-error']")
+    @FindBy(xpath = "//div[@id='super_attribute[143]-error']")
     private ExtendedWebElement errorMessageElementSize;
 
-    @FindBy(xpath = "//*[@id='super_attribute[93]-error']")
+    @FindBy(xpath = "//div[@id='super_attribute[93]-error']")
     private ExtendedWebElement errorMessageElementColor;
 
     public ProductPage(WebDriver driver) {

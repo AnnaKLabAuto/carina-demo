@@ -11,16 +11,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class Header extends AbstractUIObject {
 
-    @FindBy(xpath = ".//form[@class= 'form minisearch']")
+    @FindBy(xpath = ".//form[@id = 'search_mini_form']")
     private SearchLineComponent searchLineComponent;
 
-    @FindBy(xpath = "//a[contains(@href, '/customer/account/login/')]")
+    @FindBy(xpath = "//a[contains(text(), 'Sign In ')]")
     private ExtendedWebElement signInLink;
 
-    @FindBy(xpath = "//a[contains(@href, '/customer/account/create/')]")
+    @FindBy(xpath = "//a[contains(text(), 'Create an Account')]")
     private ExtendedWebElement createAccountLink;
 
-    @FindBy(xpath = "//li[@class='greet welcome']//span[@class='logged-in']")
+    @FindBy(xpath = "//li//span[@class='logged-in']")
     private ExtendedWebElement welcomeMessage;
 
     public Header(WebDriver driver, SearchContext searchContext) {

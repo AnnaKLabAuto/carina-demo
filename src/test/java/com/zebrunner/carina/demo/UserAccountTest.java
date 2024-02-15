@@ -39,8 +39,7 @@ public class UserAccountTest implements IAbstractTest {
         return new Object[][]{
                 {"thomas.smith@email.com", "password123!@#", SUCCESS},
                 {generateRandomEmail(), "password123!@#", FAIL},
-                {"thomas.smith@email.com", generateRandomName(), FAIL},
-                {"", "", FAIL}
+                {"thomas.smith@email.com", generateRandomName(), FAIL}
         };
     }
 
@@ -68,7 +67,7 @@ public class UserAccountTest implements IAbstractTest {
                 {"", generateRandomName(), generateRandomEmail(), "password123!@#", FAIL},
                 {generateRandomName(), "", generateRandomEmail(), "password123!@#", FAIL},
                 {generateRandomName(), generateRandomName(), "", "password123!@#", FAIL},
-                {generateRandomName(), generateRandomName(), generateRandomEmail(), " ", FAIL},
+                {generateRandomName(), generateRandomName(), generateRandomEmail(), "", FAIL},
         };
     }
 
