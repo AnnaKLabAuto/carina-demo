@@ -24,10 +24,6 @@ public class SearchLineComponent extends AbstractUIObject {
         return searchInput;
     }
 
-    public ExtendedWebElement getSearchButton() {
-        return searchButton;
-    }
-
     public SearchPage typeSearchInputData(String value){
         searchInput.type(value + Keys.ENTER);
         return new SearchPage(getDriver());

@@ -1,14 +1,13 @@
-package com.zebrunner.carina.demo.gui.components;
+package com.zebrunner.carina.demo.gui.components.header;
 
+import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
 import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class Header extends AbstractUIObject {
+public class Header extends HeaderBase {
 
     @FindBy(xpath = ".//form[@id = 'search_mini_form']")
     private SearchLineComponent searchLineComponent;
@@ -22,8 +21,8 @@ public class Header extends AbstractUIObject {
     @FindBy(xpath = "//li//span[@class='logged-in']")
     private ExtendedWebElement welcomeMessage;
 
-    public Header(WebDriver driver, SearchContext searchContext) {
-        super(driver, searchContext);
+    public Header(WebDriver driver) {
+        super(driver);
     }
 
     public SearchLineComponent getSearchLineComponent() {
