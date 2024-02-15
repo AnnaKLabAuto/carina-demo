@@ -24,11 +24,8 @@ public class ProductCard extends AbstractUIObject {
     @FindBy(xpath = "//a[@class='action tocompare']")
     private ExtendedWebElement compareButton;
 
-    private Actions actions;
-
     public ProductCard(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
-        this.actions = new Actions(driver);
     }
 
     public ExtendedWebElement getTitleElement() {

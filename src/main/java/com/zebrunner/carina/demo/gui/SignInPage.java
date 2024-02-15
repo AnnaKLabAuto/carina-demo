@@ -16,7 +16,7 @@ public class SignInPage extends AbstractPage {
     @FindBy(xpath = "//button[@id='send2']")
     private ExtendedWebElement signInButton;
 
-    @FindBy(xpath = "//div[@class='messages']//div[@class='message-error error message']//div")
+    @FindBy(xpath = "//div[@class='message-error error message']")
     private ExtendedWebElement errorMessage;
 
 

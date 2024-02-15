@@ -8,9 +8,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class RegistrationPage extends AbstractPage {
 
-    @FindBy(xpath = ".//header")
-    private Header header;
-
     @FindBy(xpath = "//input[@id='firstname']")
     private ExtendedWebElement firstNameField;
 

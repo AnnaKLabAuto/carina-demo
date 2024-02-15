@@ -7,25 +7,25 @@ import org.openqa.selenium.support.FindBy;
 
 public class AdvancedSearchFormPage extends AbstractPage {
 
-    @FindBy(xpath = "//form[@class='form search advanced']//input[@name='name']")
+    @FindBy(xpath = "//input[@name='name']")
     private ExtendedWebElement productNameInput;
 
-    @FindBy(xpath = "//form[@class='form search advanced']//input[@name='sku']")
+    @FindBy(xpath = "//input[@name='sku']")
     private ExtendedWebElement skuInput;
 
-    @FindBy(xpath = "//form[@class='form search advanced']//input[@name='description']")
+    @FindBy(xpath = "//input[@name='description']")
     private ExtendedWebElement descriptionInput;
 
-    @FindBy(xpath = "//form[@class='form search advanced']//input[@name='short_description']")
+    @FindBy(xpath = "//input[@name='short_description']")
     private ExtendedWebElement shortDescriptionInput;
 
-    @FindBy(xpath = "//form[@class='form search advanced']//input[@name='price[from]']")
+    @FindBy(xpath = "//input[@name='price[from]']")
     private ExtendedWebElement priceFromInput;
 
-    @FindBy(xpath = "//form[@class='form search advanced']//input[@name='price[to]']")
+    @FindBy(xpath = "//input[@name='price[to]']")
     private ExtendedWebElement priceToInput;
 
-    @FindBy(xpath = "//form[@class='form search advanced']//button[@type='submit']")
+    @FindBy(xpath = "//button[@class='action search primary']")
     private ExtendedWebElement searchButton;
 
     public AdvancedSearchFormPage(WebDriver driver) {
