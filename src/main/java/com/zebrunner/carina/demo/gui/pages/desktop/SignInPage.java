@@ -20,7 +20,6 @@ public class SignInPage extends SignInPageBase {
     @FindBy(xpath = "//div[@class='message-error error message']")
     private ExtendedWebElement errorMessage;
 
-
     public SignInPage(WebDriver driver) {
         super(driver);
     }
