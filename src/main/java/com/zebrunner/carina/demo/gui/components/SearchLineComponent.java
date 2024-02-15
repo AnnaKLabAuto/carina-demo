@@ -10,10 +10,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class SearchLineComponent extends AbstractUIObject {
 
-    @FindBy(xpath = ".//input[@id='search']")
+    @FindBy(xpath = "//input[@id='search']")
     private ExtendedWebElement searchInput;
 
-    @FindBy(xpath = ".//button[@type='submit']")
+    @FindBy(xpath = "//button[@type='submit']")
     private ExtendedWebElement searchButton;
 
     public SearchLineComponent(WebDriver driver, SearchContext searchContext) {

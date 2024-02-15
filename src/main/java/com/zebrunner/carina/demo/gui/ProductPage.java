@@ -9,10 +9,10 @@ import java.util.List;
 
 public class ProductPage extends AbstractPage {
 
-    @FindBy(xpath = "//div[@class='swatch-attribute size']//div[@class='swatch-option text']")
+    @FindBy(xpath = "//div[@class='swatch-option text']")
     private List<ExtendedWebElement> sizeOptions;
 
-    @FindBy(xpath = "//div[@class='swatch-attribute color']//div[@class='swatch-option color']")
+    @FindBy(xpath = "//div[@class='swatch-option color']")
     private List<ExtendedWebElement> colorOptions;
 
     @FindBy(xpath = "//button[@id='product-addtocart-button']")

@@ -9,19 +9,19 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProductCard extends AbstractUIObject {
 
-    @FindBy(xpath = ".//strong[@class='product name product-item-name']/a")
+    @FindBy(xpath = "//strong[@class='product name product-item-name']/a")
     private ExtendedWebElement titleElement;
 
-    @FindBy(xpath = ".//div[@class='reviews-actions a view']")
+    @FindBy(xpath = "//div[@class='reviews-actions a view']")
     private ExtendedWebElement reviewsLink;
 
-    @FindBy(xpath = ".//button[@class='action tocart primary']")
+    @FindBy(xpath = "//button[@class='action tocart primary']")
     private ExtendedWebElement addToCartButton;
 
-    @FindBy(xpath = ".//a[@class='action towishlist']")
+    @FindBy(xpath = "//a[@class='action towishlist']")
     private ExtendedWebElement wishlistButton;
 
-    @FindBy(xpath = ".//a[@class='action tocompare']")
+    @FindBy(xpath = "//a[@class='action tocompare']")
     private ExtendedWebElement compareButton;
 
     private Actions actions;
