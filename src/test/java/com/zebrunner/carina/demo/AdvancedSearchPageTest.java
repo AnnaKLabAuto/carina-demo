@@ -35,6 +35,7 @@ public class AdvancedSearchPageTest extends AbstractTest {
                                  ProductDetail priceFrom, ProductDetail priceTo, Status message){
 
         HomePageBase page = new HomePage(getDriver());
+        page.open();
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         AdvancedSearchFormPage advancedSearchForm =  page.getFooter().clickAdvancedSearchLink();

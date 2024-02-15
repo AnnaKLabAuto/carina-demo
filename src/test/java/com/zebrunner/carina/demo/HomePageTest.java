@@ -29,6 +29,7 @@ public class HomePageTest extends AbstractTest {
     @Test(dataProvider = "useSearchTestData", description = "JIRA#DEMO-A001")
     public void verifySearchLineTest(ProductDetail product){
         HomePageBase page = new HomePage(getDriver());
+        page.open();
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         SearchLineComponent searchLineComponent = page.getHeader().getSearchLineComponent();
@@ -53,6 +54,7 @@ public class HomePageTest extends AbstractTest {
     @Test(description = "JIRA#DEMO-A002")
     public void verifyCreateAccountButton(){
         HomePageBase page = new HomePage(getDriver());
+        page.open();
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
         page.getHeader().clickCreateAccountLink();
 
@@ -64,6 +66,7 @@ public class HomePageTest extends AbstractTest {
     @Test(description = "JIRA#DEMO-A003")
     public void verifySignInAccountButton(){
         HomePageBase page = new HomePage(getDriver());
+        page.open();
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
         page.getHeader().clickSignInLink();
 

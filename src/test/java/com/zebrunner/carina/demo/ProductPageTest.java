@@ -36,6 +36,7 @@ public class ProductPageTest extends AbstractTest {
     @Test(dataProvider = "useTestDataClothingOptions", description = "JIRA#DEMO-C001")
     public void verifyAddProductToBasket(ProductDetail productName, ProductDetail size, ProductDetail color, Status message){
         HomePageBase page = new HomePage(getDriver());
+        page.open();
         SearchLineComponent searchLineComponent = page.getHeader().getSearchLineComponent();
         SearchPage searchPage = searchLineComponent.typeSearchInputData(String.valueOf(productName));
 

@@ -8,6 +8,7 @@ import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;
 import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -39,6 +40,7 @@ public class UserAccountTest implements IAbstractTest {
     @Test(dataProvider = "useTestDataSignIn", description = "JIRA#DEMO-D001")
     public void verifySignIn(String email, String password, Status message){
         HomePageBase page = new HomePage(getDriver());
+        page.open();
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         SignInPageBase signInPage = page.getHeader().clickSignInLink();
@@ -68,6 +70,7 @@ public class UserAccountTest implements IAbstractTest {
     @Test(dataProvider = "useTestDataRegister", description = "JIRA#DEMO-D002")
     public void verifyCreateAccount(String firstName, String lastName, String email, String password, Status message){
         HomePageBase page = new HomePage(getDriver());
+        page.open();
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         RegistrationPageBase registrationPage = page.getHeader().clickCreateAccountLink();
