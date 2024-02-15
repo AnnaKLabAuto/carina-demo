@@ -2,12 +2,11 @@ package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.demo.enums.Status;
-import com.zebrunner.carina.demo.gui.RegistrationPage;
-import com.zebrunner.carina.demo.gui.HomePage;
-import com.zebrunner.carina.demo.gui.SignInPage;
-import org.openqa.selenium.WebDriver;
+import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
+import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
+import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;
+import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -17,14 +16,6 @@ import static com.zebrunner.carina.demo.enums.Status.FAIL;
 import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
 public class UserAccountTest implements IAbstractTest {
-
-    private HomePage page;
-
-    @BeforeMethod
-    public void getHomePage() {
-        page = new HomePage(getDriver());
-        page.open();
-    }
 
     private String generateRandomName() {
         return UUID.randomUUID().toString().substring(0, 9);
@@ -45,6 +36,7 @@ public class UserAccountTest implements IAbstractTest {
 
     @Test(dataProvider = "useTestDataSignIn", description = "JIRA#DEMO-D001")
     public void verifySignIn(String email, String password, Status message){
+        HomePageBase page = new HomePage(getDriver());
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         SignInPage signInPage = page.getHeader().clickSignInLink();
@@ -73,6 +65,7 @@ public class UserAccountTest implements IAbstractTest {
 
     @Test(dataProvider = "useTestDataRegister", description = "JIRA#DEMO-D002")
     public void verifyCreateAccount(String firstName, String lastName, String email, String password, Status message){
+        HomePageBase page = new HomePage(getDriver());
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         RegistrationPage registrationPage = page.getHeader().clickCreateAccountLink();

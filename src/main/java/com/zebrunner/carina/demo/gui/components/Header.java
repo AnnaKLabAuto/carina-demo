@@ -1,8 +1,7 @@
 package com.zebrunner.carina.demo.gui.components;
 
-import com.zebrunner.carina.demo.gui.RegistrationPage;
-import com.zebrunner.carina.demo.gui.SearchPage;
-import com.zebrunner.carina.demo.gui.SignInPage;
+import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
+import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;

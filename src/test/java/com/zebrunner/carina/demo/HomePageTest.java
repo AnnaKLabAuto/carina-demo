@@ -2,17 +2,14 @@ package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.enums.ProductDetail;
-import com.zebrunner.carina.demo.gui.HomePage;
-import com.zebrunner.carina.demo.gui.SearchPage;
+import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
+import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
+import com.zebrunner.carina.demo.gui.pages.desktop.SearchPage;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -20,14 +17,6 @@ import static com.zebrunner.carina.demo.enums.ProductDetail.PRODUCT_NAME1;
 import static com.zebrunner.carina.demo.enums.ProductDetail.PRODUCT_NAME2;
 
 public class HomePageTest extends AbstractTest {
-
-    private HomePage page;
-
-    @BeforeMethod
-    public void getHomePage() {
-        page = new HomePage(getDriver());
-        page.open();
-    }
 
     @DataProvider(name = "useSearchTestData")
     public Object[][] searchDataProvider() {
@@ -39,7 +28,7 @@ public class HomePageTest extends AbstractTest {
 
     @Test(dataProvider = "useSearchTestData", description = "JIRA#DEMO-A001")
     public void verifySearchLineTest(ProductDetail product){
-        SoftAssert sa = new SoftAssert();
+        HomePageBase page = new HomePage(getDriver());
 
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
@@ -48,7 +37,7 @@ public class HomePageTest extends AbstractTest {
                 "Search input is not present");
 
         SearchPage searchPage = searchLineComponent.typeSearchInputData(String.valueOf(product));
-        sa.assertTrue(page.getCurrentUrl().toLowerCase().contains(String.valueOf(product).toLowerCase()
+        Assert.assertTrue(page.getCurrentUrl().toLowerCase().contains(String.valueOf(product).toLowerCase()
                         .replace(" ", "+")), "URL doesn't contain the product");
 
         List<ProductCard> cards = searchPage.getCards();
@@ -56,16 +45,15 @@ public class HomePageTest extends AbstractTest {
         Assert.assertFalse(cards.isEmpty(), "Cards list is empty");
 
         for (ProductCard card: cards){
-            sa.assertTrue(card.getTitleText().toLowerCase().contains(String.valueOf(product).toLowerCase()),
+            Assert.assertTrue(card.getTitleText().toLowerCase().contains(String.valueOf(product).toLowerCase()),
                     String.format("Product with name '%s doesn't contain the product name in it's title",
                             card.getTitleText()));
         }
-
-        sa.assertAll();
     }
 
     @Test(description = "JIRA#DEMO-A002")
     public void verifyCreateAccountButton(){
+        HomePageBase page = new HomePage(getDriver());
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
         page.getHeader().clickCreateAccountLink();
 
@@ -76,6 +64,7 @@ public class HomePageTest extends AbstractTest {
 
     @Test(description = "JIRA#DEMO-A003")
     public void verifySignInAccountButton(){
+        HomePageBase page = new HomePage(getDriver());
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
         page.getHeader().clickSignInLink();
 

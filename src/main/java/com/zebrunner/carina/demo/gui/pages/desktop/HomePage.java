@@ -1,14 +1,13 @@
-package com.zebrunner.carina.demo.gui;
+package com.zebrunner.carina.demo.gui.pages.desktop;
 
+import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.demo.gui.components.Footer;
 import com.zebrunner.carina.demo.gui.components.Header;
 import com.zebrunner.carina.utils.config.Configuration;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends AbstractPage{
+public class HomePage extends HomePageBase {
 
     @FindBy(xpath = "//header")
     private Header header;

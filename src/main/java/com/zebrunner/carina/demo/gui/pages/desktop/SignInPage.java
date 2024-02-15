@@ -1,11 +1,12 @@
-package com.zebrunner.carina.demo.gui;
+package com.zebrunner.carina.demo.gui.pages.desktop;
 
+import com.zebrunner.carina.demo.gui.pages.common.SignInPageBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class SignInPage extends AbstractPage {
+public class SignInPage extends SignInPageBase {
 
     @FindBy(xpath = "//input[@id='email']")
     private ExtendedWebElement emailAddressField;

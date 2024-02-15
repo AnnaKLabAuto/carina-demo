@@ -1,11 +1,12 @@
-package com.zebrunner.carina.demo.gui;
+package com.zebrunner.carina.demo.gui.pages.desktop;
 
+import com.zebrunner.carina.demo.gui.pages.common.AdvancedSearchFormPageBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class AdvancedSearchFormPage extends AbstractPage {
+public class AdvancedSearchFormPage extends AdvancedSearchFormPageBase {
 
     @FindBy(xpath = "//input[@name='name']")
     private ExtendedWebElement productNameInput;
@@ -40,6 +41,7 @@ public class AdvancedSearchFormPage extends AbstractPage {
         priceFromInput.type(priceFrom);
         priceToInput.type(priceTo);
     }
+
 
     public SearchPage clickSearchButton() {
         searchButton.click();

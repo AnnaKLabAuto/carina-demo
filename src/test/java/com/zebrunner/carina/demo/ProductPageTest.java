@@ -3,14 +3,13 @@ package com.zebrunner.carina.demo;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.enums.ProductDetail;
 import com.zebrunner.carina.demo.enums.Status;
-import com.zebrunner.carina.demo.gui.HomePage;
-import com.zebrunner.carina.demo.gui.ProductPage;
-import com.zebrunner.carina.demo.gui.SearchPage;
+import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
+import com.zebrunner.carina.demo.gui.pages.desktop.ProductPage;
+import com.zebrunner.carina.demo.gui.pages.desktop.SearchPage;
+import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
 import com.zebrunner.carina.demo.gui.components.SearchLineComponent;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,14 +21,6 @@ import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
 
 public class ProductPageTest extends AbstractTest {
-
-    private HomePage page;
-
-    @BeforeMethod
-    public void getHomePage() {
-        page = new HomePage(getDriver());
-        page.open();
-    }
 
     @DataProvider(name = "useTestDataClothingOptions")
     public Object[][] userSignInDataProvider() {
@@ -43,10 +34,11 @@ public class ProductPageTest extends AbstractTest {
 
     @Test(dataProvider = "useTestDataClothingOptions", description = "JIRA#DEMO-C001")
     public void verifyAddProductToBasket(ProductDetail productName, ProductDetail size, ProductDetail color, Status message){
+        HomePageBase page = new HomePage(getDriver());
         SearchLineComponent searchLineComponent = page.getHeader().getSearchLineComponent();
         SearchPage searchPage = searchLineComponent.typeSearchInputData(String.valueOf(productName));
-        List<ProductCard> cards = searchPage.getCards();
 
+        List<ProductCard> cards = searchPage.getCards();
         Assert.assertNotNull(cards, "Cards list is null");
         Assert.assertFalse(cards.isEmpty(), "Cards list is empty");
 

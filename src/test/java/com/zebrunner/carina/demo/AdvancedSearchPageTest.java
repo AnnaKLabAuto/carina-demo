@@ -3,14 +3,12 @@ package com.zebrunner.carina.demo;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.demo.enums.ProductDetail;
 import com.zebrunner.carina.demo.enums.Status;
-import com.zebrunner.carina.demo.gui.AdvancedSearchFormPage;
-import com.zebrunner.carina.demo.gui.HomePage;
-import com.zebrunner.carina.demo.gui.SearchPage;
+import com.zebrunner.carina.demo.gui.pages.desktop.AdvancedSearchFormPage;
+import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
+import com.zebrunner.carina.demo.gui.pages.desktop.SearchPage;
+import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.demo.gui.components.ProductCard;
-import org.junit.BeforeClass;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -21,14 +19,6 @@ import static com.zebrunner.carina.demo.enums.Status.FAIL;
 import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
 
 public class AdvancedSearchPageTest extends AbstractTest {
-
-    private HomePage page;
-
-    @BeforeMethod
-    public void getHomePage() {
-        page = new HomePage(getDriver());
-        page.open();
-    }
 
     @DataProvider(name = "useAdvancedSearchTestData")
     public Object[][] searchAdvancedDataProvider() {
@@ -43,6 +33,7 @@ public class AdvancedSearchPageTest extends AbstractTest {
     public void verifySearchForm(ProductDetail productName, ProductDetail sku, ProductDetail description, ProductDetail shortDescription,
                                  ProductDetail priceFrom, ProductDetail priceTo, Status message){
 
+        HomePageBase page = new HomePage(getDriver());
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         AdvancedSearchFormPage advancedSearchForm =  page.getFooter().clickAdvancedSearchLink();
