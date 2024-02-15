@@ -29,7 +29,6 @@ public class HomePageTest extends AbstractTest {
     @Test(dataProvider = "useSearchTestData", description = "JIRA#DEMO-A001")
     public void verifySearchLineTest(ProductDetail product){
         HomePageBase page = new HomePage(getDriver());
-
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
 
         SearchLineComponent searchLineComponent = page.getHeader().getSearchLineComponent();
