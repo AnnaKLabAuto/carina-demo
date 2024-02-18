@@ -24,7 +24,7 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='Add To Cart button']")
     private ExtendedWebElement addToCartButton;
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='cart badge']//android.widget.TextView")
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='cart badge']")
     private ExtendedWebElement cartBadge;
 
     public ProductPage(WebDriver driver) {

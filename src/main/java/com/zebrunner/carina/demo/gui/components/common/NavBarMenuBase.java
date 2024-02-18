@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class NavBarMenuBase extends AbstractUIObject {
 
-
     public NavBarMenuBase(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }

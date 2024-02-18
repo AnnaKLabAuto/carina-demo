@@ -7,8 +7,6 @@ public enum ProductDetail {
     COLOR_OPTION2("blue"),
     COLOR_OPTION3("gray"),
     COLOR_OPTION4("red"),
-    PRICE_FROM("2"),
-    PRICE_TO("12"),
     INVALID("");
 
     private final String value;
