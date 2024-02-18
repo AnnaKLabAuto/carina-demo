@@ -1,25 +1,25 @@
 package com.zebrunner.carina.demo.gui.pages.common;
 
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.demo.gui.pages.android.CartPage;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
 
 public abstract class ProductPageBase extends AbstractPage {
-
     public ProductPageBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract void selectSize(String size);
+    public abstract void increaseQuantity();
+
+    public abstract void decreaseQuantity();
+
+    public abstract void addProductToCart();
+
+    public abstract boolean isAddToCartButtonEnabled();
 
     public abstract void selectColor(String color);
 
-    public abstract void clickAddToCart();
+    public abstract String getCartBadgeText();
 
-    public abstract boolean verifyProductAddedToCart(String product);
-
-    public abstract boolean isErrorMessageDisplayed();
+    public abstract CartPageBase clickCartBadge();
 }
