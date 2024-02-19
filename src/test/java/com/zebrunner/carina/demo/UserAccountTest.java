@@ -31,7 +31,7 @@ public class UserAccountTest extends AbstractTest {
     }
 
     @Test(dataProvider = "useTestDataSignIn", description = "JIRA#DEMO-B001")
-    public void testApp(User user, User password, Status message){
+    public void testUserLogIn(User user, User password, Status message){
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePage.isPageOpened(), "Homepage is not opened");
 

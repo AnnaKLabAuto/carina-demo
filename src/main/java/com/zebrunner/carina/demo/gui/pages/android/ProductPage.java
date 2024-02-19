@@ -27,6 +27,10 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc='cart badge']")
     private ExtendedWebElement cartBadge;
 
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='%s circle']")
+    private ExtendedWebElement colorType;
+
+
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -48,9 +52,7 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
     }
 
     public void selectColor(String color) {
-        String xpath = String.format("//android.view.ViewGroup[@content-desc='%s circle']", color);
-        ExtendedWebElement colorOption = findExtendedWebElement(By.xpath(xpath));
-        colorOption.click();
+        colorType.format(color).click();
     }
 
     public String getCartBadgeText() {

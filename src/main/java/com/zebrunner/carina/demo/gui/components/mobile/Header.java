@@ -16,7 +16,6 @@ public class Header extends HeaderBase {
 
     public Header(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
-        this.searchContext = searchContext;
     }
 
     public SearchContext getSearchContext() {

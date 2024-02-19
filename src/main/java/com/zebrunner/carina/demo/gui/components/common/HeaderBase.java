@@ -11,7 +11,6 @@ public abstract class HeaderBase extends AbstractUIObject {
 
     public HeaderBase(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
-        this.searchContext = searchContext;
     }
 
     public abstract NavBarMenu clickNavBarMenu();
