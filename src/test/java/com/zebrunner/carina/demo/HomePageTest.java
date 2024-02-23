@@ -1,7 +1,7 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
-import com.zebrunner.carina.demo.enums.ProductDetail;
+import com.zebrunner.carina.demo.constans.ProductDetail;
 import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.demo.gui.pages.desktop.SearchPage;
@@ -13,8 +13,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.zebrunner.carina.demo.enums.ProductDetail.PRODUCT_NAME1;
-import static com.zebrunner.carina.demo.enums.ProductDetail.PRODUCT_NAME2;
+import static com.zebrunner.carina.demo.constans.ProductDetail.PRODUCT_NAME1;
+import static com.zebrunner.carina.demo.constans.ProductDetail.PRODUCT_NAME2;
 
 public class HomePageTest extends AbstractTest {
 

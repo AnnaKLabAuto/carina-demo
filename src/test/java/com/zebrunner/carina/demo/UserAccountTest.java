@@ -1,22 +1,19 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.IAbstractTest;
-import com.zebrunner.carina.demo.enums.Status;
+import com.zebrunner.carina.demo.constans.Status;
 import com.zebrunner.carina.demo.gui.pages.common.RegistrationPageBase;
 import com.zebrunner.carina.demo.gui.pages.common.SignInPageBase;
-import com.zebrunner.carina.demo.gui.pages.desktop.RegistrationPage;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
-import com.zebrunner.carina.demo.gui.pages.desktop.SignInPage;
 import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.UUID;
 
-import static com.zebrunner.carina.demo.enums.Status.FAIL;
-import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
+import static com.zebrunner.carina.demo.constans.Status.FAIL;
+import static com.zebrunner.carina.demo.constans.Status.SUCCESS;
 
 public class UserAccountTest implements IAbstractTest {
 

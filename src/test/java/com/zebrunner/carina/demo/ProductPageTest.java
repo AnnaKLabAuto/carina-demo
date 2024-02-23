@@ -1,8 +1,8 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
-import com.zebrunner.carina.demo.enums.ProductDetail;
-import com.zebrunner.carina.demo.enums.Status;
+import com.zebrunner.carina.demo.constans.ProductDetail;
+import com.zebrunner.carina.demo.constans.Status;
 import com.zebrunner.carina.demo.gui.pages.common.ProductPageBase;
 import com.zebrunner.carina.demo.gui.pages.desktop.HomePage;
 import com.zebrunner.carina.demo.gui.pages.desktop.ProductPage;
@@ -16,9 +16,9 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.zebrunner.carina.demo.enums.ProductDetail.*;
-import static com.zebrunner.carina.demo.enums.Status.FAIL;
-import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
+import static com.zebrunner.carina.demo.constans.ProductDetail.*;
+import static com.zebrunner.carina.demo.constans.Status.FAIL;
+import static com.zebrunner.carina.demo.constans.Status.SUCCESS;
 
 
 public class ProductPageTest extends AbstractTest {
