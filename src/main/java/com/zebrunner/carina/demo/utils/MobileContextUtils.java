@@ -57,6 +57,7 @@ public class MobileContextUtils implements IDriverPool {
 
     public enum View {
         NATIVE("NATIVE_APP"),
+
         WEB_CARINA("WEBVIEW_com.solvd.carinademoapplication"),
 
         WEB_BROWSER("WEBVIEW_");

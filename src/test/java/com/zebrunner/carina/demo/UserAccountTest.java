@@ -53,7 +53,7 @@ public class UserAccountTest extends AbstractTest {
         desiredCapabilities.setCapability("appium:deviceName", "Pixel_3a");
         desiredCapabilities.setCapability("appium:deviceType", "phone");
         desiredCapabilities.setCapability("appium:udid", "emulator-5554");
-        desiredCapabilities.setCapability("appium:app", "=C:/Users/anna0/Documents/demo-app/Android-MyDemoAppRN.1.3.0.build-244.apk"); //link to app: https://github.com/saucelabs/my-demo-app-rn
+        desiredCapabilities.setCapability("appium:app", "C:/Users/anna0/Documents/demo-app/Android-MyDemoAppRN.1.3.0.build-244.apk");
         desiredCapabilities.setCapability("appium:appActivity","com.saucelabs.mydemoapp.rn.MainActivity");
     }
 }
