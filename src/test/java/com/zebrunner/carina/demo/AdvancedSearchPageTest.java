@@ -30,9 +30,8 @@ public class AdvancedSearchPageTest extends AbstractTest {
     }
 
     @Test(dataProvider = "useAdvancedSearchTestData", description = "JIRA#DEMO-B001")
-    public void verifySearchForm(ProductDetail productName, ProductDetail sku, ProductDetail description, ProductDetail shortDescription,
-                                 ProductDetail priceFrom, ProductDetail priceTo, Status message){
-
+    public void verifySearchForm(ProductDetail productName, ProductDetail sku, ProductDetail description,
+            ProductDetail shortDescription, ProductDetail priceFrom, ProductDetail priceTo, Status message){
         HomePageBase page = new HomePage(getDriver());
         page.open();
         Assert.assertTrue(page.isPageOpened(), "Home page doesn't open");
