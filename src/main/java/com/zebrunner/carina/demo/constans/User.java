@@ -2,7 +2,9 @@ package com.zebrunner.carina.demo.constans;
 
 public enum User {
     USER("bob@example.com"),
+
     PASSWORD("10203040"),
+
     INVALID("");
 
     private final String value;
