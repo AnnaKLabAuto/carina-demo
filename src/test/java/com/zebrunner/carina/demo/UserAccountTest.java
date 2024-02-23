@@ -1,11 +1,9 @@
 package com.zebrunner.carina.demo;
 
 import com.zebrunner.carina.core.AbstractTest;
-import com.zebrunner.carina.demo.enums.ProductDetail;
-import com.zebrunner.carina.demo.enums.Status;
-import com.zebrunner.carina.demo.enums.User;
+import com.zebrunner.carina.demo.constans.Status;
+import com.zebrunner.carina.demo.constans.User;
 import com.zebrunner.carina.demo.gui.components.common.NavBarMenuBase;
-import com.zebrunner.carina.demo.gui.pages.android.ProductPage;
 import com.zebrunner.carina.demo.gui.pages.common.HomePageBase;
 import com.zebrunner.carina.demo.gui.pages.common.LoginPageBase;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,11 +12,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static com.zebrunner.carina.demo.enums.User.INVALID;
-import static com.zebrunner.carina.demo.enums.Status.FAIL;
-import static com.zebrunner.carina.demo.enums.Status.SUCCESS;
-import static com.zebrunner.carina.demo.enums.User.PASSWORD;
-import static com.zebrunner.carina.demo.enums.User.USER;
+import static com.zebrunner.carina.demo.constans.User.INVALID;
+import static com.zebrunner.carina.demo.constans.Status.FAIL;
+import static com.zebrunner.carina.demo.constans.Status.SUCCESS;
+import static com.zebrunner.carina.demo.constans.User.PASSWORD;
+import static com.zebrunner.carina.demo.constans.User.USER;
 
 public class UserAccountTest extends AbstractTest {
     @DataProvider(name = "useTestDataSignIn")

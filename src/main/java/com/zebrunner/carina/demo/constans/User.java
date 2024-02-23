@@ -1,4 +1,4 @@
-package com.zebrunner.carina.demo.enums;
+package com.zebrunner.carina.demo.constans;
 
 public enum User {
     USER("bob@example.com"),
